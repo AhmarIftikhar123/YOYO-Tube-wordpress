@@ -1,0 +1,89 @@
+@use "../../0-abstract/abstract" as *;
+@use "../../2-components/components-dir/border" as *;
+
+@mixin form_group(
+  $color: var(--light_gray),
+  $bg: var(--darkest_black),
+  $border: var(--teal)
+) {
+  > label {
+    @extend %fw-600;
+    color: $color;
+  }
+  input,
+  textarea {
+    @extend %fw-600;
+    @extend %base-border;
+    @extend %transition-box-shadow;
+    accent-color: $border;
+    background-color: $bg;
+    color: $color;
+    &:focus {
+      background-color: $bg;
+      color: $color;
+      box-shadow: 0 0 0 0.15rem $border;
+      border-color: $border;
+    }
+    &::placeholder {
+      color: $color;
+      @extend %fw-400;
+    }
+  }
+}
+
+%form_group {
+  @include form_group();
+}
+%profile_form_group {
+  @include form_group($bg: var(--dark_gray));
+}
+// form_control
+@mixin form_control(
+  $bg: var(--darkest_black),
+  $color: var(--light_gray),
+  $border-color: var(--teal)
+) {
+  @extend %base-border;
+  box-shadow: 0 0 0 0.05rem $border-color;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+
+  &:focus {
+    background: $bg;
+    color: $color;
+    box-shadow: 0 0 0 0.125rem $border-color;
+  }
+
+  &::placeholder {
+    color: $color;
+  }
+}
+
+%form_control {
+  @include form_control();
+}
+
+@mixin fomr_check(
+  $accent-color: var(--teal),
+  $bg: var(--dark_gray),
+  $color: var(--light_gray),
+  $border-color: var(--teal)
+) {
+  accent-color: $accent-color;
+  background-color: #101010;
+  color: $color;
+  &:checked {
+    accent-color: var(--aqua);
+    background-color:#101010;
+    color: $color;
+    border-color: $border-color;
+  }
+  &:focus{
+    border-color: currentColor;
+    outline: 0;
+    box-shadow: 0 0 0 .125rem var(--aqua);
+  }
+}
+%form_check {
+  @include fomr_check();
+}

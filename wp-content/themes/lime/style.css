@@ -1,0 +1,16 @@
+/*
+Theme Name: YOYO-Tube
+Theme URI: https://techcomm.com/YOYO-Tube
+Author: Ahmar Iftikhar
+Author URI: https://YOYO-Tube.com
+Description: A Custom-WordPress theme 
+Version: 1.0
+Requires at least: 5.0
+Tested up to: 5.4
+Requires PHP: 7.0
+Text Domain: YOYO-Tube
+*/
+img {
+  width: 100%;
+  height: auto;
+}

@@ -1,0 +1,23 @@
+# Ignore the Astra theme directory
+/wp-content/themes/astra
+
+# Ignore environment files
+.env
+
+# Ignore wp-admin files
+/wp-admin
+
+# Ignore wp-includes files
+/wp-includes
+
+# Ignore everything in wp-content
+wp-content/*
+
+# Except the themes directory
+!wp-content/themes/
+
+# Optionally ignore node_modules, cache, or temp files
+node_modules/
+*.log
+*.cache
+.DS_Store

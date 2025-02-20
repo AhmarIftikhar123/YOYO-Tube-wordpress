@@ -1,0 +1,19 @@
+// // Essentials.
+// @use "essentials";
+
+// // // Generic
+// @use "2-generic/generic";
+// @use "2-generic/gutenberg";
+@use "2-generic/slick-carousel";
+@use "2-generic/search-results";
+// // Layout
+// @use "4-layouts/posts/meta";
+// @use "4-layouts/posts/post-card";
+// @use "4-layouts/posts/pagination";
+// @use "4-layouts/header/nav/navigation";
+@use "4-layouts/search-form";
+
+// // Components
+// body {
+//   background-color: purple;
+// }

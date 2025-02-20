@@ -1,0 +1,68 @@
+.slick-slide:focus {
+  outline: none;
+}
+
+.slick-slider {
+  margin: 0 -15px;
+}
+
+.slick-slide {
+  padding: 10px;
+  text-align: center;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.slick-prev::before {
+  content: "<";
+  color: red;
+  font-size: 30px;
+}
+
+.slick-next::before {
+  content: ">";
+  color: red;
+  font-size: 30px;
+}
+
+/* ---------------------------------
+		Colors Variables
+----------------------------------- */
+/* ---------------------------------
+		Opacity
+----------------------------------- */
+/* ---------------------------------
+		Gradient
+----------------------------------- */
+/* ---------------------------------
+		Element Colors
+----------------------------------- */
+/* ---------------------------------
+		Border Colors
+----------------------------------- */
+/* ----------------
+		Font
+------------------ */
+/* ---------------------------------
+		Body Text Font Sizes
+----------------------------------- */
+/**
+ * Add font scale with media query as per configuration on $body-text
+ * Ex: @include body-text( h1 );
+ * This will add font-size and line-height with different breakpoints.
+ */
+.search-card-container {
+  display: flex;
+}
+.search-card-container .search-card-content {
+  margin-top: 16px;
+  margin-top: 0;
+}
+.search-card-container .search-card-thumbnail {
+  margin-right: 16px;
+}
+
+.search-form input.form-control {
+  margin: 0;
+  padding: 18px 12px;
+}

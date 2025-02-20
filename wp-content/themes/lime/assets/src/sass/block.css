@@ -1,0 +1,73 @@
+/* stylelint-disable */
+.yoyo-icon-heading {
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+/* stylelint-enable */
+/* stylelint-disable */
+.yoyo-dos-and-donts .yoyo-dos-and-donts__list {
+  margin-left: 20px;
+}
+
+/* stylelint-enable */
+/* ---------------------------------
+		Colors Variables
+----------------------------------- */
+/* ---------------------------------
+		Opacity
+----------------------------------- */
+/* ---------------------------------
+		Gradient
+----------------------------------- */
+/* ---------------------------------
+		Element Colors
+----------------------------------- */
+/* ---------------------------------
+		Border Colors
+----------------------------------- */
+/* stylelint-disable */
+.editor-styles-wrapper .wp-block-button.is-style-layout-border-blue-fill .wp-block-button__link,
+.wp-block-button.is-style-layout-border-blue-fill .wp-block-button__link {
+  border: 1px solid #0673a9;
+  background-color: #38affd !important;
+  color: #fff !important;
+  padding: 8px 30px;
+  border-radius: 3px;
+}
+.editor-styles-wrapper .wp-block-button.is-style-layout-border-white-no-fill .wp-block-button__link,
+.wp-block-button.is-style-layout-border-white-no-fill .wp-block-button__link {
+  border: 1px solid #555;
+  background-color: transparent !important;
+  color: #555 !important;
+  padding: 8px 30px;
+  border-radius: 3px;
+}
+
+.block-editor-block-styles__item[aria-label="White outline - to be used with dark background"] .block-editor-block-styles__item-preview,
+.block-editor-block-styles__item[aria-label="White outline - to be used with dark background"] .block-editor-block-list__layout.is-root-container {
+  background-color: #0673a9;
+}
+.block-editor-block-styles__item[aria-label="White outline - to be used with dark background"] .block-editor-block-styles__item-preview .wp-block-button.is-style-layout-border-white-no-fill .wp-block-button__link,
+.block-editor-block-styles__item[aria-label="White outline - to be used with dark background"] .block-editor-block-list__layout.is-root-container .wp-block-button.is-style-layout-border-white-no-fill .wp-block-button__link {
+  background-color: #0673a9;
+}
+
+/* stylelint-enable */
+/* ----------------
+		Font
+------------------ */
+/* ---------------------------------
+		Body Text Font Sizes
+----------------------------------- */
+/* stylelint-disable */
+.editor-styles-wrapper .wp-block-quote:has(.is-style-layout-dark-background) {
+  background-color: #38affd;
+}
+.editor-styles-wrapper .wp-block-quote:has(.is-style-layout-dark-background) .is-style-layout-dark-background {
+  background-color: #38affd;
+  padding: 24px 18px;
+}
+
+/* stylelint-enable */

@@ -1,0 +1,7 @@
+{
+  "extends": ["@wordpress/stylelint-config", "stylelint-config-standard-scss"],
+  "rules": {
+    "indentation": 4,
+    "number-leading-zero": null
+  }
+}

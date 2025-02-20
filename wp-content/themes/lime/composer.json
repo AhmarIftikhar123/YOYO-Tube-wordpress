@@ -1,0 +1,15 @@
+{
+  "name": "root/lime",
+  "autoload": {
+    "psr-4": {
+      "Inc\\": "inc/",
+      "TemplateParts\\": "template-parts/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Ahmar Ifthikhar"
+    }
+  ],
+  "require": {}
+}

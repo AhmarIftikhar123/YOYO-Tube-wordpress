@@ -1,0 +1,14 @@
+@use "../0-settings/settings" as *;
+
+/* stylelint-disable */
+.editor-styles-wrapper .wp-block-quote {
+  &:has(.is-style-layout-dark-background) {
+    background-color: $blue-40;
+
+    .is-style-layout-dark-background {
+      background-color: $blue-40;
+      padding: 24px 18px;
+    }
+  }
+}
+/* stylelint-enable */

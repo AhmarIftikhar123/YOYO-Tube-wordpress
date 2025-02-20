@@ -1,0 +1,38 @@
+// _Theme.scss
+
+:root {
+  --teal: #45a29e; /* Teal */
+  --aqua: #66fcf1; /* Aqua */
+  --theme-icon: #fafafa;
+  --light_gray: #c5c6c7; /* Light Gray */
+  --dark_gray: #1b1b1b; /* Dark Gray */
+  --darkest_black: #101010; /* Darkest Color */
+  interpolate-size: allow-keywords;
+}
+$alert: #ff0000;
+
+.lime-theme {
+  --teal: #373937; /* Blue Dark */
+  --theme-icon: #66fcf1;
+  --aqua: #aaadb1; /* Blue Medium */
+  --light_gray: #0f0c0c; /* Blue Light */
+  --dark_gray: #aaadb1; /* Gray Light */
+  --darkest_black: #fafafa; /* Gray Lighter */
+}
+$theme-variables: (
+  "teal",
+  "theme-icon",
+  "aqua",
+  "light_gray",
+  "dark_gray",
+  "darkest_black"
+);
+
+@each $variable in $theme-variables {
+  .clr_#{$variable} {
+    color: var(--#{$variable});
+  }
+  .bg_#{$variable} {
+    background-color: var(--#{$variable});
+  }
+}

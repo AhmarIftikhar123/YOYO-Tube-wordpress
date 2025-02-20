@@ -1,0 +1,20 @@
+@use "../1-tools/tools" as *;
+.search-card-container {
+  // @include mq( medium ) {
+  display: flex;
+  // }
+
+  .search-card-content {
+    margin-top: 16px;
+
+    // @include mq( medium ) {
+    margin-top: 0;
+    // }
+  }
+
+  .search-card-thumbnail {
+    // @include mq( medium ) {
+    margin-right: 16px;
+    // }
+  }
+}
