@@ -1,0 +1,154 @@
+@use '../0-abstracts/abstracts' as *;
+// header.scss
+.site-header {
+  background-color: $darker-bg;
+  height: $header-height;
+  border-bottom: 1px solid rgba($primary-purple, 0.2);
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+
+  .navbar {
+    height: 100%;
+    padding: 0.5rem 1rem;
+
+    .navbar-brand {
+      color: $primary-purple;
+      font-weight: 600;
+      font-size: 1.5rem;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: $primary-purple-light;
+      }
+
+      img {
+        max-height: 40px;
+      }
+    }
+
+    .navbar-toggler {
+      color: $text-light;
+      border: 1px solid rgba($primary-purple, 0.3);
+      padding: 0.5rem 0.75rem;
+
+      &:focus {
+        box-shadow: 0 0 0 2px rgba($primary-purple, 0.25);
+      }
+    }
+
+    .navbar-nav {
+      .nav-item {
+        margin: 0 0.5rem;
+
+        .nav-link {
+          color: $text-light;
+          position: relative;
+          padding: 0.5rem 1rem;
+          transition: color 0.2s ease;
+
+          &:hover {
+            color: $primary-purple-light;
+          }
+
+          &.active {
+            color: $primary-purple;
+          }
+        }
+
+        // Dropdown styling
+        &.dropdown {
+          .btn-secondary {
+            background-color: transparent;
+            border: 1px solid rgba($primary-purple, 0.3);
+            color: $text-light;
+            padding: 0.5rem 1rem;
+
+            &:hover {
+              background-color: rgba($primary-purple, 0.1);
+            }
+          }
+
+          .dropdown-menu {
+            background-color: $dark-bg;
+            border: 1px solid rgba($primary-purple, 0.2);
+            margin-top: 0.5rem;
+
+            .dropdown-item {
+              color: $text-light;
+              padding: 0.75rem 1.25rem;
+
+              &:hover {
+                background-color: rgba($primary-purple, 0.1);
+                color: $primary-purple-light;
+              }
+            }
+          }
+        }
+      }
+
+      // Profile image container
+      .profile_image_container {
+        #profile {
+          cursor: pointer;
+          display: block;
+          padding: 0.25rem;
+
+          .profile_image {
+            width: 40px;
+            height: 40px;
+            border: 2px solid $primary-purple;
+            transition: border-color 0.2s ease;
+
+            &:hover {
+              border-color: $primary-purple-light;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 991px) {
+  .site-header {
+    .navbar {
+      .navbar-collapse {
+        background-color: $darker-bg;
+        padding: 1rem;
+        position: absolute;
+        top: $header-height;
+        left: 0;
+        right: 0;
+        border-bottom: 1px solid rgba($primary-purple, 0.2);
+
+        .navbar-nav {
+          gap: 1rem !important;
+
+          .nav-item {
+            margin: 0;
+            width: 100%;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Theme toggler button (commented out in PHP but styled for future use)
+#themeToggler {
+  background: transparent;
+  border: none;
+  color: $text-light;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $primary-purple-light;
+  }
+}

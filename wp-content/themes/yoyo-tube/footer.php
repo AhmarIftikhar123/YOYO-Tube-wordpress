@@ -21,7 +21,7 @@ $get_current_user_id = get_current_user_id(); // Get the current user ID
 
 <footer id="colophon" class="site-footer footer text-center clr_light_gray bg_darkest_black">
 	<div class="container fs_90">
-		<div class="row py-4">
+		<div class="row py-2">
 			<!-- Site Info Section -->
 			<div class="col-md-4 mx-auto">
 				<h5 class="mb-1 fw-semibold">YoYo Tube</h5>

@@ -43,15 +43,16 @@ class assets
                               '6.5.1'
                     );
 
-                    // Enqueue Main CSS
-                    $main_css_path = TEMPLATE_URI . "/mini_css/main.css";
+                    // Register Main CSS
+                    $main_css_path = TEMPLATE_DIR . "/dist/mini_css/main.css";
                     if (file_exists($main_css_path)) {
-                              wp_enqueue_style(
+                              wp_register_style(
                                         'main-css',
-                                        TEMPLATE_URI . "/mini_css/main.css",
+                                        TEMPLATE_URI . "/dist/mini_css/main.css",
                                         ['bootstrap-css'],
                                         filemtime($main_css_path) // Cache busting
                               );
+                              wp_enqueue_style('main-css');
                     }
           }
 

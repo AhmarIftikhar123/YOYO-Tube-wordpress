@@ -1,7 +1,7 @@
 <?php
 namespace Inc\classes;
 
-use Core\{assets, Menus};
+use Core\{assets, Menus, RegisterPostTypes};
 use Inc\traits\singleton;
 class yoyo_tube
 {
@@ -10,6 +10,7 @@ class yoyo_tube
           {
                     Menus::getInstance();
                     assets::getInstance();
+                    RegisterPostTypes::getInstance();
                     $this->setup_hooks();
           }
 

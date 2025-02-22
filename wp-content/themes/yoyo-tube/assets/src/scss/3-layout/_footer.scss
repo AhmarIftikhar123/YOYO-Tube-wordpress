@@ -1,0 +1,136 @@
+// src/scss/layout/_footer.scss
+
+@use '../0-abstracts/abstracts' as *;
+
+.site-footer {
+  background-color: $darker-bg;
+  color: $text-muted;
+  padding: 1rem 0;
+  font-size: 0.9rem;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  h5 {
+    color: $text-light;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .col-md-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 2rem;
+
+    @media (min-width: 768px) {
+      flex: 0 0 33.333333%;
+      max-width: 33.333333%;
+      margin-bottom: 0;
+    }
+  }
+
+  // Site Info Section
+  .site-info {
+    h5 {
+      font-size: 1.2rem;
+    }
+
+    p {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  // Quick Links Section
+  .quick-links {
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        margin-bottom: 0.5rem;
+
+        a {
+          color: $text-muted;
+          text-decoration: none;
+          transition: color 0.2s ease;
+
+          &:hover {
+            color: $primary-purple-light;
+          }
+        }
+      }
+    }
+  }
+
+  // Social Media Section
+  // .social-media {
+  .social_media_icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+
+    a {
+      color: $text-muted;
+      font-size: 1.25rem; // Increased font size
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: $primary-purple-light;
+      }
+
+      // Specific colors for social media icons
+      i {
+        transition: opacity 0.2s ease;
+        &:hover {
+          opacity: 0.75;
+        }
+        &.fa-facebook {
+          color: #1877f2;
+        }
+        &.fa-twitter {
+          color: #1da1f2;
+        }
+        &.fa-instagram {
+          color: #e4405f;
+        }
+        &.fa-youtube {
+          color: #ff0000;
+        }
+        &.fa-linkedin {
+          color: #0077b5;
+        }
+        &.fa-pinterest {
+          color: #bd081c;
+        }
+        &.fa-tiktok {
+          color: #000000;
+        }
+        &.fa-snapchat {
+          color: #fffc00;
+        }
+        &.fa-whatsapp {
+          color: #25d366;
+        }
+        &.fa-github {
+          color: #333;
+        }
+        &.fa-dribbble {
+          color: #ea4c89;
+        }
+        &.fa-behance {
+          color: #1769ff;
+        }
+      }
+    }
+  }
+  // }
+}

@@ -1,0 +1,54 @@
+// src/scss/abstracts/_mixins.scss
+
+@use 'variables' as *;
+
+// ... other mixins ...
+
+@mixin social-icon-colors {
+  &.fa-facebook,
+  &.fa-facebook-f {
+    color: #1877f2;
+  }
+  &.fa-twitter,
+  &.fa-twitter-square {
+    color: #1da1f2;
+  }
+  &.fa-instagram {
+    color: #e4405f;
+  }
+  &.fa-youtube,
+  &.fa-youtube-square {
+    color: #ff0000;
+  }
+  &.fa-linkedin,
+  &.fa-linkedin-in {
+    color: #0077b5;
+  }
+  &.fa-pinterest,
+  &.fa-pinterest-p {
+    color: #bd081c;
+  }
+  &.fa-tiktok {
+    color: #000000;
+  }
+  &.fa-snapchat,
+  &.fa-snapchat-ghost {
+    color: #fffc00;
+  }
+  &.fa-whatsapp {
+    color: #25d366;
+  }
+  &.fa-telegram,
+  &.fa-telegram-plane {
+    color: #0088cc;
+  }
+  &.fa-github {
+    color: #333;
+  }
+  &.fa-dribbble {
+    color: #ea4c89;
+  }
+  &.fa-behance {
+    color: #1769ff;
+  }
+}
