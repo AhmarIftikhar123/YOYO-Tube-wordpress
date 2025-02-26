@@ -27,7 +27,8 @@
     "psr-4": {
       "Inc\\": "inc/",
       "Classes\\": "inc/classes",
-      "Core\\": "inc/classes/core"
+      "Core\\": "inc/classes/core",
+      "Videos\\": "inc/classes/core/videos"
     }
   },
   "config": {

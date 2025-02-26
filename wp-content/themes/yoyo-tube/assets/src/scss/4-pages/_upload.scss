@@ -1,0 +1,147 @@
+@use '../0-abstracts/abstracts' as *;
+@use 'sass:color'; // Import the color module for modern color functions
+
+.yoyo-upload-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: $dark-bg;
+  color: $text-light;
+}
+
+.yoyo-upload-title {
+  text-align: center;
+  margin-bottom: 30px;
+  color: $primary-purple;
+}
+
+.drag-drop-zone {
+  border: 2px dashed $primary-purple-light;
+  border-radius: 4px;
+  padding: 40px;
+  text-align: center;
+  margin-bottom: 20px;
+  background: $darker-bg;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &.dragover {
+    border-color: $primary-purple;
+    background: rgba($primary-purple, 0.1);
+  }
+}
+
+.upload-icon {
+  width: 48px;
+  margin-bottom: 10px;
+  fill: $primary-purple;
+}
+
+.browse-text {
+  color: $primary-purple-light;
+  cursor: pointer;
+
+  &:hover {
+    color: $primary-purple;
+  }
+}
+
+.file-input {
+  display: none;
+}
+
+.form-group {
+  margin-bottom: 20px;
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: $text-muted;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid $primary-purple-dark;
+    border-radius: 4px;
+    background-color: $darker-bg;
+    color: $text-light;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-purple;
+    }
+  }
+}
+
+.form-fields-row {
+  display: flex;
+  gap: 20px;
+}
+
+.form-group.half {
+  flex: 1;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  input[type="checkbox"] {
+    accent-color: $primary-purple;
+  }
+}
+
+.upload-btn {
+  background: $primary-purple;
+  color: $text-light;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background: $primary-purple-dark;
+  }
+}
+
+.progress-bar {
+  height: 20px;
+  background: $darker-bg;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.progress {
+  height: 100%;
+  background: $primary-purple;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+#yoyo-video-message {
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: 20px;
+
+  &.success {
+    background-color: rgba($primary-purple, 0.2);
+    color: color.adjust($primary-purple-light, $lightness: 20%);
+  }
+
+  &.error {
+    background-color: rgba(red, 0.2);
+    color: color.adjust(
+      red,
+      $lightness: 20%
+    ); // Replaced lighten() with color.adjust()
+  }
+}

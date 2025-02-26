@@ -14,10 +14,10 @@ class RegisterPostTypes
 
           public function setup_hooks()
           {
-                    // Register Custom Post Type Video
                     add_action('init', [$this, 'create_video_custom_post_type']);
-                    add_filter('upload_mimes', [$this,'allow_video_uploads']);
+                    add_filter('upload_mimes', [$this, 'allow_video_uploads']);
           }
+
           public function create_video_custom_post_type()
           {
 
@@ -54,8 +54,9 @@ class RegisterPostTypes
                               'label' => __('Video', 'YOYO-Tube'),
                               'description' => __('Custom Video Upload Post', 'YOYO-Tube'),
                               'labels' => $labels,
-                              'menu_icon' => '',
-                              'supports' => array(),
+                              'menu_icon' => 'dashicons-video-alt3',
+                              'supports' => array('title', 'editor', 'thumbnail'),
+                              'rewrite' => array('slug' => 'custom_video_upload_form'),
                               'taxonomies' => array(),
                               'public' => true,
                               'show_ui' => true,
@@ -79,6 +80,8 @@ class RegisterPostTypes
                     $mimes['mov'] = 'video/quicktime';
                     $mimes['avi'] = 'video/x-msvideo';
                     $mimes['webm'] = 'video/webm';
+                    $mimes['mkv'] = 'video/x-matroska';
                     return $mimes;
           }
+
 }

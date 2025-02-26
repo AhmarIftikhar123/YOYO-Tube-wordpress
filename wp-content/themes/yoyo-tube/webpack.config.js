@@ -5,8 +5,13 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin"); // Optional 
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const JS_DIR = "./assets/src/js/";
+
+const entery = {
+  main: JS_DIR + "main.js", // Entry point of your application
+  upload_video: JS_DIR + "upload_video.js",
+};
 module.exports = {
-  entry: JS_DIR + "main.js", // Entry point of your application
+  entry: entery,
   output: {
     path: path.resolve(__dirname, "dist"), // Output directory
     filename: "[name].js", // Output JavaScript file with default name
@@ -25,7 +30,8 @@ module.exports = {
         test: /\.scss$/, // Apply this rule to CSS files
         use: [
           MiniCssExtractPlugin.loader, // Extract CSS into separate files
-          "css-loader",'sass-loader' // Translates CSS into CommonJS modules
+          "css-loader",
+          "sass-loader", // Translates CSS into CommonJS modules
         ],
       },
     ],

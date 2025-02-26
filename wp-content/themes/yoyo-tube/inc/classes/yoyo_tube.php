@@ -3,6 +3,7 @@ namespace Inc\classes;
 
 use Core\{assets, Menus, RegisterPostTypes};
 use Inc\traits\singleton;
+use Videos\Videos;
 class yoyo_tube
 {
           use singleton;
@@ -11,6 +12,7 @@ class yoyo_tube
                     Menus::getInstance();
                     assets::getInstance();
                     RegisterPostTypes::getInstance();
+                    Videos::getInstance();
                     $this->setup_hooks();
           }
 

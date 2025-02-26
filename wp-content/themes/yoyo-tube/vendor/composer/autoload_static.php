@@ -7,6 +7,10 @@ namespace Composer\Autoload;
 class ComposerStaticInit8de789a2c20183752e72c14c93a923cf
 {
     public static $prefixLengthsPsr4 = array (
+        'V' => 
+        array (
+            'Videos\\' => 7,
+        ),
         'I' => 
         array (
             'Inc\\' => 4,
@@ -19,6 +23,10 @@ class ComposerStaticInit8de789a2c20183752e72c14c93a923cf
     );
 
     public static $prefixDirsPsr4 = array (
+        'Videos\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/inc/classes/core/videos',
+        ),
         'Inc\\' => 
         array (
             0 => __DIR__ . '/../..' . '/inc',
@@ -35,6 +43,8 @@ class ComposerStaticInit8de789a2c20183752e72c14c93a923cf
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Core\\Social_Walker' => __DIR__ . '/../..' . '/inc/classes/core/Social_Walker.php',
+        'Core\\assets' => __DIR__ . '/../..' . '/inc/classes/core/assets.php',
         'Inc\\classes\\yoyo_tube' => __DIR__ . '/../..' . '/inc/classes/yoyo_tube.php',
         'Inc\\traits\\singleton' => __DIR__ . '/../..' . '/inc/traits/singleton.php',
     );

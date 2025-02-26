@@ -1,0 +1,1 @@
+<?php get_template_part("template-parts/video_upload/Upload"); ?>
