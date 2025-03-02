@@ -1,5 +1,6 @@
 @use '../0-abstracts/abstracts' as *;
-@use 'sass:color'; // Import the color module for modern color functions
+@use '../2-components/components' as *;
+@use 'sass:color';
 
 .yoyo-upload-container {
   max-width: 800px;
@@ -50,6 +51,10 @@
   display: none;
 }
 
+.dashicons-cloud-upload::before {
+  font-size: 1.75rem;
+}
+
 .form-group {
   margin-bottom: 20px;
 
@@ -96,20 +101,26 @@
   }
 }
 
+.price-input-wrapper {
+  position: relative;
+
+  .dollar-sign {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $text-muted;
+  }
+
+  input[type="number"] {
+    padding-left: 20px;
+  }
+}
+
 .upload-btn {
-  background: $primary-purple;
-  color: $text-light;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  @extend .btn-primary;
   display: block;
   margin: 20px auto;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background: $primary-purple-dark;
-  }
 }
 
 .progress-bar {
@@ -139,9 +150,6 @@
 
   &.error {
     background-color: rgba(red, 0.2);
-    color: color.adjust(
-      red,
-      $lightness: 20%
-    ); // Replaced lighten() with color.adjust()
+    color: color.adjust(red, $lightness: 20%);
   }
 }

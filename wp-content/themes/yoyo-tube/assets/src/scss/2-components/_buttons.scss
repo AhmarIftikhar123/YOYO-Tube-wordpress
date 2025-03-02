@@ -1,0 +1,16 @@
+@use '../0-abstracts/abstracts' as *;
+@use 'sass:color';
+.btn-primary {
+  color: $primary-purple;
+  // color: $text-light;
+  padding: 10px 20px;
+  border-color: $primary-purple;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background: $primary-purple-light;
+  }
+}

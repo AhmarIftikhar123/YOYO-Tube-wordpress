@@ -15,7 +15,7 @@ services:
       - db
     command: >
       bash -c "apt-get update &&
-               apt-get install -y unzip &&
+               apt-get install -y ffmpeg unzip &&
                curl -sS https://getcomposer.org/installer | php &&
                mv composer.phar /usr/local/bin/composer &&
                apache2-foreground"

@@ -1,0 +1,70 @@
+@use '../0-abstracts/abstracts' as *;
+
+.video-gallery-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.video-gallery-title {
+  // text-align: center;
+  margin: 20px 1rem;
+  color: $primary-purple;
+  font-size: 1.25rem;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.video-item {
+  background-color: $darker-bg;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+.video-thumbnail {
+  position: relative;
+  // padding-top: 56.25%; // 16:9 aspect ratio
+
+  img {
+    object-fit: cover;
+    max-height: 310px;
+    width: 100%;
+  }
+}
+
+.video-title {
+  font-size: 1.2rem;
+  margin: 10px;
+  color: $text-light;
+}
+
+.video-meta {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  font-size: 0.9rem;
+  color: $text-muted;
+}
+
+.video-description {
+  padding: 10px;
+  font-size: 0.9rem;
+  color: $text-muted;
+}
+
+.video-link {
+  display: block;
+  text-align: center;
+  margin: 10px;
+  padding: 8px 0;
+}
