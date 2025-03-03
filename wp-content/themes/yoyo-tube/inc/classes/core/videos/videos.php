@@ -125,6 +125,9 @@ class Videos
         }
         
         update_post_meta($post_id, 'video_category', sanitize_text_field($_POST['video_category']));
+
+        update_post_meta($post_id, 'video_link', esc_url_raw(home_url('/video-player/?video_id=' . $post_id)));
+
         $is_paid = isset($_POST['is_paid']);
         update_post_meta($post_id, 'is_paid', $is_paid);
         if ($is_paid) {

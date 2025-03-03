@@ -8,7 +8,8 @@ use Inc\Helpers\template_tags;
  * @package YOYO-Tube
  */
 $template_tags_Instance = template_tags::getInstance();
+
+$video_link = get_post_meta(get_the_ID(), 'video_link', true);
 ?>
 <div class="video-description"><?php $template_tags_Instance->yoyo_the_excert(35); ?></div>
-<a href="<?php esc_url( the_permalink()) ?>" class="btn-primary video-link text-decoration-none">Watch Video</a>
-
+<a href="<?php echo esc_url($video_link); ?>" class="btn-primary video-link text-decoration-none">Watch Video</a>

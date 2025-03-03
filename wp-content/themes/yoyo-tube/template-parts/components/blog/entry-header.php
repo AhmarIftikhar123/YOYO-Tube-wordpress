@@ -11,8 +11,6 @@
 $get_thumbnail_url = get_post_meta(get_the_ID(), 'thumbnail_url', true);
 
 $thumbnail_url =  $get_thumbnail_url ? $get_thumbnail_url  : "https://placehold.co/600x500?text=Don%27t%20Have%20Thumbnail";
-// var_dump($thumbnail_url);
-// wp_die();
 // Get the page title and sanitize it
 $page_title = wp_kses_post(get_the_title());
 
