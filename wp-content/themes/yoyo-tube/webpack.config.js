@@ -9,6 +9,7 @@ const JS_DIR = "./assets/src/js/";
 const entery = {
   main: JS_DIR + "main.js", // Entry point of your application
   upload_video: JS_DIR + "upload_video.js",
+  video_player: JS_DIR + "video-player.js",
 };
 module.exports = {
   entry: entery,

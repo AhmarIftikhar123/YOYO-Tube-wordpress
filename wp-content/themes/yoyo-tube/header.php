@@ -15,5 +15,5 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
-<div id="page" class="site container">
+<div id="page" class="site container-fluid">
 <?php get_template_part('template-parts/header/nav') ?>

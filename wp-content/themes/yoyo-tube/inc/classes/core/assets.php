@@ -91,6 +91,11 @@ class assets
             'ajaxurl' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('upload_video_action')
         ]);
+
+        // enqueue video_player.js for Video Player
+        wp_register_script('video-player-script', BUILD_PATH . '/video_player.js', array('jquery'), filemtime(TEMPLATE_DIR ."/dist/vidoe_player.js" ), true);
+
+        wp_enqueue_script('video-player-script');
     }
 
     public function enqueue_admin_scripts()
