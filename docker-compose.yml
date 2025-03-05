@@ -30,6 +30,7 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
       - db_data:/var/lib/mysql
+      - ./wp-content/themes/yoyo-tube/db_backup:/backup  # Store database dumps here
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin

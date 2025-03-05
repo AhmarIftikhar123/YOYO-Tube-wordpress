@@ -54,6 +54,8 @@ if ( post_password_required() ) {
 				array(
 					'style'      => 'ol',
 					'short_ping' => true,
+					'avatar_size' => 40,
+					'class'      => 'rounded-circle',
 				)
 			);
 			?>

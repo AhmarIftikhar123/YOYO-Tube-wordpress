@@ -19,7 +19,7 @@ class VideoPlayerPage
 
     private function init()
     {
-        if (!isset($_GET['video_id'])) {
+        if (!isset($_GET['video_id']) && !strpos($_SERVER["REQUEST_URL"], '/video-player/')) {
             $this->render_error('No video ID provided.');
             return;
         }
@@ -68,7 +68,7 @@ class VideoPlayerPage
     {
         echo '<div class="video-comments">';
         echo '<h2>Comments</h2>';
-        comments_template();
+        comments_template('video_comments.php');
         echo '</div>';
     }
     private function render_video_details()
