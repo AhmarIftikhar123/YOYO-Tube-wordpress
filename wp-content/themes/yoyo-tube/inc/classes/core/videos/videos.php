@@ -14,7 +14,7 @@ class Videos
     public function setup_hooks()
     {
         add_action('wp_ajax_yoyo_handle_video_upload', [$this, 'yoyo_handle_video_upload']);
-        add_action('wp_ajax_nopriv_yoyo_handle_video_upload', [$this, 'yoyo_handle_video_upload']);
+        add_action('wp_ajax_nopriv_yoyo_handle_video_upload', [$this, 'yoyo_handle_video_upload']); 
     }
 
     public function extract_video_thumbnail($video_path, $thumbnail_path, $time = 1)
@@ -54,6 +54,7 @@ class Videos
     private function verify_request()
     {
         check_ajax_referer('yoyo-video-upload', 'security');
+        header('Content-Type: application/json');
         if (!is_user_logged_in()) {
             wp_send_json_error(['message' => "You must be logged in to upload a video."]);
         }

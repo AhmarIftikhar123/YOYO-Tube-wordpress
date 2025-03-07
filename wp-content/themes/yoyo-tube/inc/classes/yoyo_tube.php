@@ -1,6 +1,7 @@
 <?php
 namespace Inc\classes;
 
+use Authentication\authentication;
 use Core\{assets, Menus, RegisterPostTypes};
 use Inc\traits\singleton;
 use Videos\Videos;
@@ -13,6 +14,7 @@ class yoyo_tube
                     assets::getInstance();
                     RegisterPostTypes::getInstance();
                     Videos::getInstance();
+                    authentication::getInstance();
                     $this->setup_hooks();
           }
 

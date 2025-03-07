@@ -10,4 +10,5 @@ return array(
     'Inc\\' => array($baseDir . '/inc'),
     'Core\\' => array($baseDir . '/inc/classes/core'),
     'Classes\\' => array($baseDir . '/inc/classes'),
+    'Authentication\\' => array($baseDir . '/inc/classes/core/authentication'),
 );

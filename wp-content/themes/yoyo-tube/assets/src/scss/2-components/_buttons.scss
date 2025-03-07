@@ -2,7 +2,7 @@
 @use 'sass:color';
 .btn-primary {
   color: $primary-purple;
-  // color: $text-light;
+  background: transparent;
   padding: 10px 20px;
   border-color: $primary-purple;
   border-radius: 4px;
@@ -11,6 +11,7 @@
   transition: background-color 0.3s ease;
 
   &:hover {
+    border-color: $primary-purple;
     background: $primary-purple-light;
   }
 }

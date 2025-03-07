@@ -23,6 +23,7 @@ class assets
     {
         add_action('wp_enqueue_scripts', [$this, 'enqueue_styles']);
         add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts']);
+        add_action('wp_enqueue_scripts', [$this, 'enqueue_localize']);
         // add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_scripts']);
     }
 
@@ -70,8 +71,18 @@ class assets
             '5.3.3',
             true
         );
+        // Enqueue Main JS File (Latest Version)
+        wp_register_script(
+            'main',
+            BUILD_PATH . "/main.js",
+            ['jquery'], // Ensure jQuery is a dependency
+            filemtime(TEMPLATE_DIR . "build/main.js"), // Cache busting
+            true // Load in footer
+        );
 
-        // Define main.js path and URL
+        wp_enqueue_script('main');
+
+        // Define upload_video.js path and URL
         $upload_video_js_path = TEMPLATE_DIR . "/dist/upload_video.js";
         $upload_video_js_url = TEMPLATE_URI . "/dist/upload_video.js";
 
@@ -86,21 +97,40 @@ class assets
 
         wp_enqueue_script('upload_video-js');
 
-        // Pass PHP data to JavaScript
-        wp_localize_script('upload_video-js', 'yoyo_ajax', [
-            'ajaxurl' => admin_url('admin-ajax.php'),
-            'nonce' => wp_create_nonce('upload_video_action')
-        ]);
+        // enqueue video_player JS file for Video Player
+        wp_register_script('video-player-script', BUILD_PATH . '/video_player.js', array('jquery'), filemtime(TEMPLATE_DIR . "/dist/vidoe_player.js"), true);
 
-        // enqueue video_player.js for Video Player
-        wp_register_script('video-player-script', BUILD_PATH . '/video_player.js', array('jquery'), filemtime(TEMPLATE_DIR ."/dist/vidoe_player.js" ), true);
+        if (is_page('video-player')) {
+            wp_enqueue_script('video-player-script');
+        }
 
-        wp_enqueue_script('video-player-script');
+        // enqueue Authentication JS file for Video Player
+        wp_register_script('authentication', BUILD_PATH . '/authentication.js', array('jquery'), filemtime(TEMPLATE_DIR . "/dist/authentication.js"), true);
+
+        if (is_page('authentication')) {
+            wp_enqueue_script('authentication');
+        }
     }
 
     public function enqueue_admin_scripts()
     {
         // Check if we are on the correct page
+    }
+    public function enqueue_localize()
+    {
+        // Pass PHP data to JavaScript upload_video-js
+        wp_localize_script('upload_video-js', 'yoyo_ajax', [
+            'ajaxurl' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('upload_video_action'),
+            'home_url' => home_url()
+
+        ]);
+        // Pass PHP data to JavaScript upload_video-js
+        wp_localize_script('authentication', 'yoyo_auth_ajax', [
+            'ajaxurl' => admin_url('admin-ajax.php'),
+            'security' => wp_create_nonce('yoyo_auth_nonce'),
+            'home_url' => home_url()
+        ]);
     }
 
 }

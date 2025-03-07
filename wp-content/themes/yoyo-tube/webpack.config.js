@@ -10,6 +10,8 @@ const entery = {
   main: JS_DIR + "main.js", // Entry point of your application
   upload_video: JS_DIR + "upload_video.js",
   video_player: JS_DIR + "video-player.js",
+  redirect: JS_DIR + "redirect-script/redirect.js",
+  authentication : JS_DIR + "authentication-scipts/authentication.js",
 };
 module.exports = {
   entry: entery,

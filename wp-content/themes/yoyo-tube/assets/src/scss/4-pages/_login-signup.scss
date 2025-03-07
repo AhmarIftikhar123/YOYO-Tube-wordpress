@@ -1,0 +1,66 @@
+@use '../0-abstracts/abstracts' as *;
+@use '../2-components/components' as *;
+@use 'sass:color';
+
+.login-signup-container {
+  background-color: $darker-bg;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+
+  .nav-tabs {
+    border-bottom: 2px solid $primary-purple-light;
+    margin-block: 0 1.5rem;
+    margin-inline: 0;
+
+    .nav-link {
+      color: $text-muted;
+      border: none;
+      padding: 0.5rem 1rem;
+      margin-right: 1rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: $primary-purple;
+      }
+
+      &.active {
+        color: $primary-purple;
+        background-color: transparent;
+        border-bottom: 2px solid $primary-purple;
+      }
+    }
+  }
+
+  .form-label {
+    color: $text-light;
+  }
+
+  .form-control,
+  .form-select {
+    background-color: $dark-bg;
+    border: 1px solid $primary-purple-light;
+    color: $text-light;
+
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba($primary-purple, 0.25);
+      border-color: $primary-purple;
+    }
+  }
+
+  .form-check-input {
+    background-color: $dark-bg;
+    border-color: $primary-purple-light;
+
+    &:checked {
+      background-color: $primary-purple;
+      border-color: $primary-purple;
+    }
+  }
+}
+
+#authTabContent {
+  padding-top: 1rem;
+}

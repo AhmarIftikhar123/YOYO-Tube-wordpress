@@ -28,7 +28,8 @@
       "Inc\\": "inc/",
       "Classes\\": "inc/classes",
       "Core\\": "inc/classes/core",
-      "Videos\\": "inc/classes/core/videos"
+      "Videos\\": "inc/classes/core/videos",
+      "Authentication\\": "inc/classes/core/authentication"
     }
   },
   "config": {
