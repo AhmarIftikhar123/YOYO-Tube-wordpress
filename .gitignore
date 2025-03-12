@@ -1,14 +1,14 @@
 # Ignore the Astra theme directory
-/wp-content/themes/astra
+/wp-content/themes/astra/
 
 # Ignore environment files
 .env
 
 # Ignore wp-admin files
-/wp-admin
+/wp-admin/
 
 # Ignore wp-includes files
-/wp-includes
+/wp-includes/
 
 # Ignore everything in wp-content
 wp-content/*
@@ -16,8 +16,24 @@ wp-content/*
 # Except the themes directory
 !wp-content/themes/
 
+# Ignore specific directories inside wp-content/themes
+wp-content/themes/yoyo-tube/db_backup/
+wp-content/themes/yoyo-tube/db_data/
+
 # Optionally ignore node_modules, cache, or temp files
 node_modules/
 *.log
 *.cache
 .DS_Store
+
+# Ignore everything in vendor
+wp-content/themes/yoyo-tube/vendor/*
+
+# Except for the autoload.php file
+!vendor/autoload.php
+
+# Except for the Stripe package
+!vendor/stripe-php/
+
+# Except for the Stripe package
+!vendor/composer/

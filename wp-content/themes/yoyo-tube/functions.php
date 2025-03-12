@@ -194,7 +194,6 @@ define('YOYO_ARCHIVE_POST_PER_PAGE', 9);
 
 define('YOYO_SEARCH_POST_PER_PAGE', 9);
 
-
 require_once TEMPLATE_DIR . "/vendor/autoload.php";
 
 $yoyo_tube = yoyo_tube::getInstance();

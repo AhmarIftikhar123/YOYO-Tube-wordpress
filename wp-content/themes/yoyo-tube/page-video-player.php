@@ -54,10 +54,10 @@ class VideoPlayerPage
             $this->render_payment_form();
         } else {
             $this->render_video_player();
+            $this->render_video_details();
+            $this->render_comments();
         }
 
-        $this->render_video_details();
-        $this->render_comments();
 
         echo '</div>';
         get_footer();
@@ -66,36 +66,42 @@ class VideoPlayerPage
     // ... (keep other existing methods)
     private function render_comments()
     {
-        echo '<div class="video-comments">';
-        echo '<h2>Comments</h2>';
-        comments_template('video_comments.php');
-        echo '</div>';
+        ?>
+        <div class="video-comments">
+            <h2>Comments</h2>
+            <?php comments_template('video_comments.php'); ?>
+        </div>
+        <?php
     }
     private function render_video_details()
     {
-        echo '<div class="video-details">';
-        echo '<h1 class="video-title">' . esc_html($this->video_post->post_title) . '</h1>';
-        echo '<div class="video-meta">';
-        echo '<span class="video-date">' . get_the_date('', $this->video_post) . '</span>';
-        if ($this->is_paid) {
-            echo '<span class="video-price">$' . number_format($this->video_price, 2) . '</span>';
-        } else {
-            echo '<span class="video-price">Free</span>';
-        }
-        echo '</div>';
-        echo '<div class="video-description">' . wpautop($this->video_post->post_content) . '</div>';
-        echo '</div>';
+        ?>
+        <div class="video-details">
+            <h1 class="video-title"><?php echo esc_html($this->video_post->post_title); ?></h1>
+            <div class="video-meta">
+                <span class="video-date"><?php echo esc_html(get_the_date('', $this->video_post)); ?></span>
+                <?php if ($this->is_paid): ?>
+                    <span class="video-price">$<?php echo number_format($this->video_price, 2); ?></span>
+                <?php else: ?>
+                    <span class="video-price">Free</span>
+                <?php endif; ?>
+            </div>
+            <div class="video-description"><?php echo wpautop($this->video_post->post_content); ?></div>
+        </div>
+        <?php
     }
     private function render_payment_form()
     {
-        echo '<div id="payment-form" class="payment-form">';
-        echo '<p>This video is paid content. Please pay $' . esc_html($this->video_price) . ' to unlock it.</p>';
-        echo '<form action="" method="POST" id="stripe-payment-form">';
-        echo '<input type="hidden" name="video_id" value="' . esc_attr($this->video_id) . '">';
-        echo '<div id="card-element"><!-- Stripe Card Element will be inserted here --></div>';
-        echo '<button id="submit-payment" class="btn-primary">Pay Now</button>';
-        echo '</form>';
-        echo '</div>';
+        ?>
+        <div id="payment-form" class="payment-form">
+            <p>This video is paid content. Please pay $<?php echo esc_html($this->video_price); ?> to unlock it.</p>
+            <form action="" method="POST" id="stripe-payment-form">
+                <input type="hidden" name="video_id" value="<?php echo esc_attr($this->video_id); ?>">
+                <div id="card-element"><!-- Stripe Card Element will be inserted here --></div>
+                <button id="submit-payment" class="btn-primary">Pay Now</button>
+            </form>
+        </div>
+        <?php
 
         wp_enqueue_script('stripe-js', 'https://js.stripe.com/v3/');
         wp_enqueue_script('stripe-payment-handler', get_template_directory_uri() . '/js/stripe-payment-handler.js', ['stripe-js'], null, true);
