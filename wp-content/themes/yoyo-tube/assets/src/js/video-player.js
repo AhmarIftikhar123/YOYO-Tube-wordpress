@@ -124,4 +124,32 @@ jQuery(document).ready(function ($) {
   // Initial setup
   updateVolumeIcon();
   updatePlayPauseIcon();
+
+  // // Preserve video_id when submitting comments
+  // $(".comment-form").on("submit", function (e) {
+  //   const videoId = $('input[name="video_id"]').val();
+  //   console.log(videoId);
+  //   if (videoId) {
+  //     const currentAction = $(this).attr("action");
+  //     $(this).attr(
+  //       "action",
+  //       currentAction +
+  //         (currentAction.includes("?") ? "&" : "?") +
+  //         "video_id=" +
+  //         videoId
+  //     );
+  //     console.log($(this).attr("action"));
+  //   }
+  // });
+
+  // // Update comment reply links to include video_id
+  // $(".comment-reply-link").each(function () {
+  //   const videoId = $('input[name="video_id"]').val();
+  //   console.log(videoId);
+  //   if (videoId) {
+  //     const href = $(this).attr("href");
+  //     $(this).attr("href", href + "&video_id=" + videoId);
+  //     console.log($(this).attr("href"));
+  //   }
+  // });
 });

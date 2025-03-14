@@ -1,0 +1,79 @@
+@use '../0-abstracts/abstracts' as *;
+// Toast styles
+.toast-container {
+  z-index: 1050;
+}
+
+.toast {
+  background-color: $darker-bg;
+  border: none;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+
+  .toast-header {
+    background-color: $dark-bg;
+    color: $text-light;
+    border-bottom: 1px solid rgba($primary-purple-light, 0.2);
+
+    .toast-icon {
+      display: flex;
+      align-items: center;
+
+      i {
+        font-size: 1.2rem;
+      }
+    }
+
+    .toast-title {
+      font-weight: 500;
+    }
+
+    .btn-close {
+      filter: invert(1) grayscale(100%) brightness(200%);
+    }
+  }
+
+  .toast-body {
+    color: $text-light;
+  }
+
+  // Toast variants
+  &.success {
+    .toast-header {
+      background-color: rgba($primary-purple, 0.1);
+
+      .toast-icon i {
+        color: $primary-purple;
+      }
+    }
+  }
+
+  &.error {
+    .toast-header {
+      background-color: rgba(#dc3545, 0.1);
+
+      .toast-icon i {
+        color: #dc3545;
+      }
+    }
+  }
+
+  &.warning {
+    .toast-header {
+      background-color: rgba(#ffc107, 0.1);
+
+      .toast-icon i {
+        color: #ffc107;
+      }
+    }
+  }
+
+  &.info {
+    .toast-header {
+      background-color: rgba(#0dcaf0, 0.1);
+
+      .toast-icon i {
+        color: #0dcaf0;
+      }
+    }
+  }
+}

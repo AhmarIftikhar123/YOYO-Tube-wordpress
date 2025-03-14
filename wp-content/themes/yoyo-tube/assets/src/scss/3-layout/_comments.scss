@@ -1,0 +1,147 @@
+@use '../0-abstracts/abstracts' as *;
+.comments-area {
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: $darker-bg;
+  border-radius: 8px;
+
+  .comments-title {
+    color: $primary-purple;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .comment-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .comment-item {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: $dark-bg;
+    border-radius: 4px;
+    border-left: 3px solid $primary-purple;
+
+    .comment-body {
+      position: relative;
+    }
+
+    .comment-meta {
+      margin-bottom: 1rem;
+    }
+
+    .comment-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      .comment-avatar {
+        border-radius: 50%;
+        border: 2px solid $primary-purple-light;
+      }
+
+      .author-info {
+        .fn {
+          color: $primary-purple;
+          font-weight: 500;
+          text-decoration: none;
+        }
+
+        .comment-metadata {
+          font-size: 0.875rem;
+          color: $text-muted;
+
+          time {
+            margin-right: 1rem;
+          }
+
+          .edit-link {
+            color: $primary-purple-light;
+          }
+        }
+      }
+    }
+
+    .comment-content {
+      color: $text-light;
+      margin: 1rem 0;
+      line-height: 1.6;
+    }
+
+    .reply {
+      text-align: right;
+
+      .comment-reply-link {
+        color: $primary-purple;
+        text-decoration: none;
+        font-size: 0.875rem;
+
+        &:hover {
+          color: $primary-purple-light;
+        }
+      }
+    }
+  }
+
+  .comment-respond {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba($primary-purple-light, 0.2);
+
+    .comment-reply-title {
+      color: $primary-purple;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .comment-form {
+      label {
+        color: $text-light;
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      textarea,
+      input[type="text"],
+      input[type="email"] {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid $primary-purple-light;
+        border-radius: 4px;
+        background-color: $dark-bg;
+        color: $text-light;
+        margin-bottom: 1rem;
+
+        &:focus {
+          outline: none;
+          border-color: $primary-purple;
+          box-shadow: 0 0 0 2px rgba($primary-purple, 0.1);
+        }
+      }
+
+      .form-submit {
+        margin-top: 1rem;
+      }
+    }
+  }
+
+  .comment-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+
+    .nav-previous,
+    .nav-next {
+      a {
+        color: $primary-purple;
+        text-decoration: none;
+
+        &:hover {
+          color: $primary-purple-light;
+        }
+      }
+    }
+  }
+}

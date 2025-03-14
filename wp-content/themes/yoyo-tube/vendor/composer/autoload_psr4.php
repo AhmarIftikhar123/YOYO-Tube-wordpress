@@ -10,7 +10,7 @@ return array(
     'WP_CLI\\I18n\\' => array($vendorDir . '/wp-cli/i18n-command/src'),
     'Videos\\' => array($baseDir . '/inc/classes/core/videos'),
     'Symfony\\Component\\Finder\\' => array($vendorDir . '/symfony/finder'),
-    'Stripe\\' => array($vendorDir . '/stripe/stripe-php/lib'),
+    'Stripe\\' => array($baseDir . '/inc/classes/core/stripe', $vendorDir . '/stripe/stripe-php/lib'),
     'Peast\\' => array($vendorDir . '/mck89/peast/lib/Peast'),
     'Mustangostang\\' => array($vendorDir . '/wp-cli/mustangostang-spyc/src'),
     'Inc\\' => array($baseDir . '/inc'),

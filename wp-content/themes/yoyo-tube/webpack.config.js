@@ -11,7 +11,8 @@ const entery = {
   upload_video: JS_DIR + "upload_video.js",
   video_player: JS_DIR + "video-player.js",
   redirect: JS_DIR + "redirect-script/redirect.js",
-  authentication : JS_DIR + "authentication-scipts/authentication.js",
+  authentication: JS_DIR + "authentication-scipts/authentication.js",
+  stripe: JS_DIR + "stripe/stripe-payment-handler.js",
 };
 module.exports = {
   entry: entery,

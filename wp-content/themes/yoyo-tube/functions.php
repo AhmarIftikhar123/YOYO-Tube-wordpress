@@ -179,7 +179,53 @@ require get_template_directory() . '/inc/customizer.php';
 if (defined('JETPACK__VERSION')) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
-
+function yoyo_custom_comment($comment, $args, $depth) {
+	?>
+	<div id="comment-<?php comment_ID(); ?>" <?php comment_class('comment-item'); ?>>
+	    <div class="comment-body">
+	        <div class="comment-meta">
+		  <div class="comment-author">
+		      <?php echo get_avatar($comment, 50, '', '', array('class' => 'comment-avatar')); ?>
+		      <div class="author-info">
+			<?php printf('<cite class="fn">%s</cite>', get_comment_author_link()); ?>
+			<div class="comment-metadata">
+			    <time datetime="<?php comment_time('c'); ?>">
+			        <?php
+			        printf(
+				  _x('%1$s at %2$s', '1: date, 2: time'),
+				  get_comment_date(),
+				  get_comment_time()
+			        );
+			        ?>
+			    </time>
+			    <?php edit_comment_link(__('Edit'), ' <span class="edit-link">', '</span>'); ?>
+			</div>
+		      </div>
+		  </div>
+	        </div>
+      
+	        <div class="comment-content">
+		  <?php comment_text(); ?>
+	        </div>
+      
+	        <?php if ('0' == $comment->comment_approved) : ?>
+		  <p class="comment-awaiting-moderation">
+		      <?php _e('Your comment is awaiting moderation.'); ?>
+		  </p>
+	        <?php endif; ?>
+      
+	        <div class="reply">
+		  <?php
+		  comment_reply_link(array_merge($args, array(
+		      'reply_text' => __('Reply'),
+		      'depth' => $depth,
+		      'max_depth' => $args['max_depth']
+		  )));
+		  ?>
+	        </div>
+	    </div>
+	<?php
+      }
 use Inc\classes\yoyo_tube;
 
 // /var/www/html/wp-content/themes/yoyo-tube

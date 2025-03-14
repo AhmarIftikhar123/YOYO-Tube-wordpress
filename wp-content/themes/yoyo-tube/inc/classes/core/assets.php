@@ -97,12 +97,7 @@ class assets
 
         wp_enqueue_script('upload_video-js');
 
-        // enqueue video_player JS file for Video Player
-        wp_register_script('video-player-script', BUILD_PATH . '/video_player.js', array('jquery'), filemtime(TEMPLATE_DIR . "/dist/vidoe_player.js"), true);
 
-        if (is_page('video-player')) {
-            wp_enqueue_script('video-player-script');
-        }
 
         // enqueue Authentication JS file for Video Player
         wp_register_script('authentication', BUILD_PATH . '/authentication.js', array('jquery'), filemtime(TEMPLATE_DIR . "/dist/authentication.js"), true);
@@ -110,6 +105,11 @@ class assets
         if (is_page('authentication')) {
             wp_enqueue_script('authentication');
         }
+
+                        
+        wp_enqueue_script('stripe-js', 'https://js.stripe.com/v3/');
+
+        wp_enqueue_script('stripe-payment-handler', BUILD_PATH .  '/stripe.js', ['stripe-js'], filemtime(TEMPLATE_DIR . "/dist/stripe.js"), true);
     }
 
     public function enqueue_admin_scripts()
@@ -130,6 +130,13 @@ class assets
             'ajaxurl' => admin_url('admin-ajax.php'),
             'security' => wp_create_nonce('yoyo_auth_nonce'),
             'home_url' => home_url()
+        ]);
+        // Pass PHP data to JavaScript stripe-js
+        wp_localize_script('stripe-payment-handler', 'yoyo_stripe_ajax', [
+            'ajaxurl' => admin_url('admin-ajax.php'),
+            'security' => wp_create_nonce('yoyo_auth_nonce'),
+            'stripe_nonce' => wp_create_nonce('yoyo_stripe_nonce'),
+            'home_url' => home_url(),
         ]);
     }
 

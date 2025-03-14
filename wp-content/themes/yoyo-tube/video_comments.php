@@ -16,79 +16,73 @@
  * return early without loading the comments.
  */
 if (post_password_required()) {
-	return;
+    return;
 }
 ?>
 
 <div id="comments" class="comments-area">
+    <?php if (have_comments()) : ?>
+        <h2 class="comments-title">
+            <?php
+            $comments_number = get_comments_number();
+            printf(
+                _nx(
+                    '%1$s Comment',
+                    '%1$s Comments',
+                    $comments_number,
+                    'comments title',
+                    'YOYO-Tube'
+                ),
+                number_format_i18n($comments_number)
+            );
+            ?>
+        </h2>
 
-	<?php
-	// You can start editing here -- including this comment!
-	if (have_comments()):
-		?>
-		<h2 class="comments-title">
-			<?php
-			$yoyo_tube_comment_count = get_comments_number();
-			if ('1' === $yoyo_tube_comment_count) {
-				printf(
-					/* translators: 1: title. */
-					esc_html__('One thought on &ldquo;%1$s&rdquo;', 'yoyo-tube'),
-					'<span>' . wp_kses_post(get_the_title()) . '</span>'
-				);
-			} else {
-				printf(
-					/* translators: 1: comment count number, 2: title. */
-					esc_html(_nx('%1$s thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', $yoyo_tube_comment_count, 'comments title', 'yoyo-tube')),
-					number_format_i18n($yoyo_tube_comment_count), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					'<span>' . wp_kses_post(get_the_title()) . '</span>'
-				);
-			}
-			?>
-		</h2><!-- .comments-title -->
+        <div class="comment-list">
+            <?php
+            wp_list_comments(array(
+                'style' => 'div',
+                'short_ping' => true,
+                'avatar_size' => 50,
+                'callback' => 'yoyo_custom_comment'
+            ));
+            ?>
+        </div>
 
-		<ol class="comment-list">
-			<?php
-			wp_list_comments(
-				array(
-					'style' => 'ol',
-					'short_ping' => true,
-					'avatar_size' => 40,
-					'class' => 'rounded-circle',
-				)
-			);
-			?>
-		</ol><!-- .comment-list -->
+        <?php if (get_comment_pages_count() > 1 && get_option('page_comments')) : ?>
+            <nav class="comment-navigation">
+                <div class="nav-previous"><?php previous_comments_link(__('Older Comments', 'yoyo-tube')); ?></div>
+                <div class="nav-next"><?php next_comments_link(__('Newer Comments', 'yoyo-tube')); ?></div>
+            </nav>
+        <?php endif; ?>
+    <?php endif; ?>
 
-		<?php
-		$video_id = isset($_GET['video_id']) ? $_GET['video_id'] : '';
+    <?php if (!comments_open() && get_comments_number() && post_type_supports(get_post_type(), 'comments')) : ?>
+        <p class="no-comments"><?php _e('Comments are closed.', 'yoyo-tube'); ?></p>
+    <?php endif; ?>
 
-		$prev_link = get_previous_comments_link(__('Older Comments'));
-		$next_link = get_next_comments_link(__('Newer Comments'));
+    <?php
+    // Preserve video_id in comment form
+    $video_id = isset($_GET['video_id']) ? $_GET['video_id'] : '';
+    $comments_args = array(
+        'title_reply' => __('Leave a Comment', 'yoyo-tube'),
+        'class_form' => 'comment-form',
+        'comment_field' => '<div class="comment-form-comment">
+                            <label for="comment">' . _x('Comment', 'noun') . '</label>
+                            <textarea id="comment" name="comment" rows="5" required></textarea>
+                          </div>',
+        'submit_button' => '<button type="submit" name="submit" class="btn-primary">Post Comment</button>',
+        'submit_field' => '<div class="form-submit">%1$s %2$s</div>',
+        'fields' => array(
+            'url' => '', // Remove website field
+        ),
+    );
 
-		if ($prev_link || $next_link): ?>
-			<nav class="comment-navigation">
-				<ul class="pagination">
-					<?php if ($prev_link): ?>
-						<li class="prev">
-							<?php echo str_replace('#comments', '?video_id=' . esc_attr($video_id) . '#comments', $prev_link); ?>
-						</li>
-					<?php endif; ?>
-					<?php if ($next_link): ?>
-						<li class="next">
-							<?php echo str_replace('#comments', '?video_id=' . esc_attr($video_id) . '#comments', $next_link); ?>
-						</li>
-					<?php endif; ?>
-				</ul>
-			</nav>
-			 <!-- If comments are closed and there are comments, let's leave a little note, shall we?
-		if ( ! comments_open() ) : -->
-			<p class="no-comments"><?php esc_html_e('Comments are closed.', 'yoyo-tube'); ?></p>
-			<?php
-		endif;
+    // Add hidden input for video_id
+    add_action('comment_form', function() use ($video_id) {
+        echo '<input type="hidden" name="video_id" value="' . esc_attr($video_id) . '">';
+    });
 
-	endif; // Check for have_comments().
-	
-	comment_form();
-	?>
-
-</div><!-- #comments -->
+    comment_form($comments_args);
+    ?>
+</div>

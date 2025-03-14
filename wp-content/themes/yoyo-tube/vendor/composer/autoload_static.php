@@ -81,7 +81,8 @@ class ComposerStaticInit8de789a2c20183752e72c14c93a923cf
         ),
         'Stripe\\' => 
         array (
-            0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
+            0 => __DIR__ . '/../..' . '/inc/classes/core/stripe',
+            1 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
         ),
         'Peast\\' => 
         array (
