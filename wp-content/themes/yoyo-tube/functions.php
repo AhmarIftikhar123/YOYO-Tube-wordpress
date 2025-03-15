@@ -179,6 +179,7 @@ require get_template_directory() . '/inc/customizer.php';
 if (defined('JETPACK__VERSION')) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+
 function yoyo_custom_comment($comment, $args, $depth) {
 	?>
 	<div id="comment-<?php comment_ID(); ?>" <?php comment_class('comment-item'); ?>>
@@ -226,6 +227,27 @@ function yoyo_custom_comment($comment, $args, $depth) {
 	    </div>
 	<?php
       }
+      function custom_comment_redirect($location, $comment) {
+	      if (isset($_POST['video_id'])) {
+	//     wp_die('custom_comment_redirect is called');
+        $video_id = intval($_POST['video_id']);
+        $location = site_url('/video-player/?video_id=' . $video_id . '#comment-' . $comment->comment_ID);
+    }
+    return $location;
+}
+add_filter('comment_post_redirect', 'custom_comment_redirect', 10, 2);
+function add_video_id_to_comment_pagination($link) {
+	if (isset($_GET['video_id'])) {
+		// wp_die('add_video_id_to_comment_pagination is called');
+	    $video_id = intval($_GET['video_id']);
+	    $link = add_query_arg('video_id', $video_id, $link);
+	}
+	return $link;
+      }
+      add_filter('paginate_comments_links', 'add_video_id_to_comment_pagination');
+      add_filter('get_comment_link', 'add_video_id_to_comment_pagination');
+      
+
 use Inc\classes\yoyo_tube;
 
 // /var/www/html/wp-content/themes/yoyo-tube

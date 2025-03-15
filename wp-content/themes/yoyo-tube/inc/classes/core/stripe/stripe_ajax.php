@@ -26,6 +26,9 @@ class stripe_ajax
           }
           public function handle_stripe_payment()
           {
+                    if (!is_user_logged_in()) {
+                              wp_send_json_error(['message' => 'Payment failed. You must be logged in to make a payment.']);
+                    }
                     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['stripeToken'], $_POST['video_id'])) {
                               \Stripe\Stripe::setApiKey('sk_test_51Q5gn6EQVKGjbQGAV1dtVCs6AYu4SKQTM6ZrLJqx9nfeWY70uBXdNwJ8NNO5gdn6a8Aikkycx5OZU6g002YS8bch003qAiEez1'); // your Stripe secret key
                               

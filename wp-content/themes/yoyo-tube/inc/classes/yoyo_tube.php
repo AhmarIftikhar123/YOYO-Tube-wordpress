@@ -4,6 +4,7 @@ namespace Inc\classes;
 use Authentication\authentication;
 use Authentication\user_avatar;
 use Core\{assets, Menus, RegisterPostTypes};
+use Core\Comments_support;
 use Core\Short_codes;
 use Inc\traits\singleton;
 use Stripe\stripe_ajax;
@@ -21,6 +22,7 @@ class yoyo_tube
         user_avatar::getInstance();
         stripe_ajax::getInstance();
         Short_codes::getInstance();
+        Comments_support::getInstance();
         $this->setup_hooks();
     }
 

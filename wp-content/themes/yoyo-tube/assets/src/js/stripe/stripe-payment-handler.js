@@ -79,12 +79,15 @@ jQuery(document).ready(function ($) {
           data: data,
           success: function (response) {
             if (response.success) {
-              showToast(response.message || "Payment successful!", "success");
+              showToast(
+                response.data.message || "Payment successful!",
+                "success"
+              );
               setTimeout(function () {
                 window.location.reload();
               }, 2000);
             } else {
-              showToast(response.message || "Payment failed.", "error");
+              showToast(response.data.message || "Payment failed.", "error");
             }
           },
           error: function (xhr, statusText, error) {
