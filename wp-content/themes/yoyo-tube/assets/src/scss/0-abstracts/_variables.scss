@@ -1,10 +1,11 @@
-$primary-purple: #8a2be2; // Keeping this as is for brand consistency
-$primary-purple-dark: #6a1b9a; // Keeping this as is for brand consistency
-$primary-purple-light: #d7b8ff; // Lighter shade of purple
-$dark-bg: #f8f9fa; // Light gray background
-$darker-bg: #ffffff; // White background
-$text-light: #333333; // Dark gray text for contrast
-$text-muted: rgba(0, 0, 0, 0.6); // Slightly transparent black for muted text
-$controls-bg: rgba(0, 0, 0, 0.7);
-$controls-color: #ffffff;
+// Update these color variables for a more eye-friendly dark theme
+$primary-purple: #9370db; // Softer medium purple
+$primary-purple-dark: #6a5acd; // Softer slate blue
+$primary-purple-light: #b19cd9; // Softer light purple
+$dark-bg: #1e1e2e; // Dark blue-gray background
+$darker-bg: #13131a; // Darker background for contrast
+$text-light: #e2e2e2; // Light gray text for dark backgrounds
+$text-muted: rgba(255, 255, 255, 0.6); // Semi-transparent white for muted text
+$controls-bg: rgba(0, 0, 0, 0.7); // Keeping this as is
+$controls-color: #ffffff; // Keeping this as is
 $header-height: 70px; // Keeping this as is

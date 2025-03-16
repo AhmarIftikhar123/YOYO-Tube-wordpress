@@ -1,5 +1,8 @@
-@use '../0-abstracts/abstracts' as *;
+@use "../0-abstracts/abstracts" as *;
 // header.scss
+body.container {
+  background-color: $darker-bg;
+}
 .site-header {
   background-color: $darker-bg;
   height: $header-height;

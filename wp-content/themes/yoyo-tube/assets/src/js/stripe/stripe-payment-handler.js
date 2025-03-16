@@ -5,18 +5,16 @@ jQuery(document).ready(function ($) {
   const elements = stripe.elements();
   const style = {
     base: {
-      color: "#333333",
+      color: "#e2e2e2", // Light gray text for readability
       fontSize: "16px",
-      "::placeholder": { color: "rgba(0, 0, 0, 0.6)" },
-      backgroundColor: "#ffffff",
-      padding: "10px",
-      border: "1px solid #8a2be2",
-      borderRadius: "5px",
+      "::placeholder": { color: "rgba(255, 255, 255, 0.6)" }, // Muted white for placeholders
+      backgroundColor: "#13131a", // Darker background for contrast (not applied to Stripe Elements directly)
     },
     invalid: {
-      color: "#ff4d4d",
+      color: "#ff4d4d", // Error text remains red for visibility
     },
   };
+
   const card = elements.create("card", { style: style });
   card.mount("#card-element");
 

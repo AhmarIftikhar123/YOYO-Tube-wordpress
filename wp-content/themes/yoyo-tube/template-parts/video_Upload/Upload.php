@@ -45,7 +45,7 @@ get_header();
         </div>
 
         <div class="form-group checkbox">
-            <label>
+            <label class="d-flex gap-2">
                 <input type="checkbox" name="is_paid" id="yoyo-video-paid">
                 Make this content Paid (Default is Free)
             </label>

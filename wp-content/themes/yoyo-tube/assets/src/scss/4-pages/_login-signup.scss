@@ -1,66 +1,192 @@
 @use '../0-abstracts/abstracts' as *;
-@use '../2-components/components' as *;
 @use 'sass:color';
 
+// Authentication page styles
 .login-signup-container {
+  background-color: $dark-bg;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  margin: 3rem auto;
+  max-width: 500px;
+}
+
+// Tabs styling
+.nav-tabs {
+  border-bottom: 1px solid rgba($primary-purple-light, 0.2);
   background-color: $darker-bg;
-  border-radius: 8px;
+  padding: 0 !important;
+
+  .nav-item {
+    flex: 1;
+    text-align: center;
+  }
+
+  .nav-link {
+    color: $text-muted;
+    font-weight: 600;
+    padding: 1rem;
+    border: none;
+    border-radius: 0;
+    transition: all 0.3s ease;
+    position: relative;
+    background: transparent;
+
+    &:hover {
+      color: $primary-purple-light;
+    }
+
+    &.active {
+      color: $primary-purple-light;
+      background-color: transparent;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: $primary-purple;
+        border-radius: 3px 3px 0 0;
+      }
+    }
+  }
+}
+
+// Tab content
+.tab-content {
   padding: 2rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-top: 2rem;
 
-  .nav-tabs {
-    border-bottom: 2px solid $primary-purple-light;
-    margin-block: 0 1.5rem;
-    margin-inline: 0;
+  .tab-pane {
+    animation: fadeIn 0.3s ease;
+  }
+}
 
-    .nav-link {
-      color: $text-muted;
-      border: none;
-      padding: 0.5rem 1rem;
-      margin-right: 1rem;
-      font-weight: 500;
-      transition: all 0.3s ease;
+// Form elements
+.form-label {
+  color: $text-muted;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
 
-      &:hover {
-        color: $primary-purple;
-      }
+input.form-control,
+input.form-select,
+.form-select {
+  background-color: $darker-bg;
+  border: 1px solid rgba($primary-purple-light, 0.2);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  color: $text-light;
+  transition: all 0.3s ease;
 
-      &.active {
-        color: $primary-purple;
-        background-color: transparent;
-        border-bottom: 2px solid $primary-purple;
-      }
-    }
+  &:focus {
+    box-shadow: 0 0 0 3px rgba($primary-purple, 0.2);
+    border-color: $primary-purple-light;
+    background-color: color.adjust($darker-bg, $lightness: -3%);
   }
 
-  .form-label {
-    color: $text-light;
+  &::placeholder {
+    color: rgba($text-muted, 0.7);
   }
+}
 
-  .form-control,
-  .form-select {
-    background-color: $dark-bg;
-    border: 1px solid $primary-purple-light;
-    color: $text-light;
-
-    &:focus {
-      box-shadow: 0 0 0 0.2rem rgba($primary-purple, 0.25);
-      border-color: $primary-purple;
-    }
-  }
+// Checkbox styling
+.form-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
 
   .form-check-input {
-    background-color: $dark-bg;
-    border-color: $primary-purple-light;
+    width: 18px;
+    height: 18px;
+    background-color: $darker-bg;
+    border: 1px solid rgba($primary-purple-light, 0.4);
+    cursor: pointer;
 
     &:checked {
       background-color: $primary-purple;
       border-color: $primary-purple;
     }
   }
+
+  .form-check-label {
+    color: $text-muted;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
 }
 
-#authTabContent {
-  padding-top: 1rem;
+// Social login divider
+.social-login-divider {
+  position: relative;
+  margin: 1.5rem 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: rgba($text-muted, 0.2);
+    z-index: 1;
+  }
+
+  span {
+    position: relative;
+    z-index: 2;
+    background-color: $dark-bg;
+    padding: 0 1rem;
+    color: $text-muted;
+    font-size: 0.9rem;
+  }
+}
+
+// Social login buttons
+.social-login-buttons {
+  margin-top: 1rem;
+
+  .btn-google {
+    background-color: $darker-bg;
+    color: $text-light;
+    border: 1px solid rgba($primary-purple-light, 0.3);
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: color.adjust($darker-bg, $lightness: 5%);
+      border-color: $primary-purple-light;
+    }
+
+    i {
+      color: #db4437;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+// Animation
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .login-signup-container {
+    margin: 1.5rem auto;
+    border-radius: 8px;
+  }
+
+  .tab-content {
+    padding: 1.5rem;
+  }
 }

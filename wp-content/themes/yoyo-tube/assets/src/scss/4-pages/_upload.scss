@@ -1,49 +1,78 @@
-@use '../0-abstracts/abstracts' as *;
-@use '../2-components/components' as *;
-@use 'sass:color';
+@use "../0-abstracts/abstracts" as *;
+@use "../2-components/components" as *;
+@use "sass:color";
 
 .yoyo-upload-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2.5rem;
   background-color: $dark-bg;
   color: $text-light;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .yoyo-upload-title {
   text-align: center;
-  margin-bottom: 30px;
-  color: $primary-purple;
+  margin-bottom: 2rem;
+  color: $primary-purple-light;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
 .drag-drop-zone {
-  border: 2px dashed $primary-purple-light;
-  border-radius: 4px;
-  padding: 40px;
+  border: 2px dashed rgba($primary-purple-light, 0.4);
+  border-radius: 12px;
+  padding: 3rem 2rem;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
   background: $darker-bg;
   cursor: pointer;
   transition: all 0.3s ease;
 
   &.dragover {
-    border-color: $primary-purple;
-    background: rgba($primary-purple, 0.1);
+    border-color: $primary-purple-light;
+    background: rgba($primary-purple, 0.15);
+    transform: scale(1.01);
+  }
+
+  .drag-drop-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  p {
+    margin-top: 0.75rem;
+    color: $text-muted;
+    font-size: 1rem;
   }
 }
 
 .upload-icon {
   width: 48px;
-  margin-bottom: 10px;
-  fill: $primary-purple;
+  height: 48px;
+  margin-bottom: 1rem;
+  color: $primary-purple-light;
+  opacity: 0.9;
+}
+
+.dashicons-cloud-upload::before {
+  font-size: 3rem;
 }
 
 .browse-text {
   color: $primary-purple-light;
+  font-weight: 600;
+  text-decoration: underline;
   cursor: pointer;
+  transition: all 0.2s ease;
 
   &:hover {
-    color: $primary-purple;
+    // Replace lighten() with color.adjust()
+    color: color.adjust($primary-purple-light, $lightness: 10%);
   }
 }
 
@@ -51,40 +80,49 @@
   display: none;
 }
 
-.dashicons-cloud-upload::before {
-  font-size: 1.75rem;
-}
-
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
 
   label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 0.5rem;
     font-weight: 500;
     color: $text-muted;
+    font-size: 0.9rem;
   }
 
   input[type="text"],
   input[type="number"],
   textarea {
     width: 100%;
-    padding: 8px;
-    border: 1px solid $primary-purple-dark;
-    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba($primary-purple-light, 0.3);
+    border-radius: 8px;
     background-color: $darker-bg;
     color: $text-light;
+    font-size: 1rem;
+    transition: all 0.2s ease;
 
     &:focus {
       outline: none;
-      border-color: $primary-purple;
+      border-color: $primary-purple-light;
+      box-shadow: 0 0 0 3px rgba($primary-purple, 0.2);
+    }
+
+    &::placeholder {
+      color: rgba($text-muted, 0.7);
     }
   }
 }
 
 .form-fields-row {
   display: flex;
-  gap: 20px;
+  gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1rem;
+  }
 }
 
 .form-group.half {
@@ -94,10 +132,22 @@
 .checkbox {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.75rem;
+  cursor: pointer;
+
+  label {
+    margin-bottom: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+  }
 
   input[type="checkbox"] {
     accent-color: $primary-purple;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
   }
 }
 
@@ -106,50 +156,93 @@
 
   .dollar-sign {
     position: absolute;
-    left: 10px;
+    left: 1rem;
     top: 50%;
     transform: translateY(-50%);
     color: $text-muted;
+    font-weight: 500;
   }
 
   input[type="number"] {
-    padding-left: 20px;
+    padding-left: 1.75rem;
   }
 }
 
 .upload-btn {
-  @extend .btn-primary;
   display: block;
-  margin: 20px auto;
+  width: auto;
+  min-width: 180px;
+  margin: 2rem auto 1rem;
+  padding: 0.75rem 2rem;
+  background: $primary-purple;
+  color: $text-light;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba($primary-purple-dark, 0.125);
+
+  &:hover {
+    // Replace lighten() with color.adjust()
+    background: color.adjust($primary-purple, $lightness: 5%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba($primary-purple-dark, 0.6);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba($primary-purple-dark, 0.5);
+  }
 }
 
 .progress-bar {
-  height: 20px;
-  background: $darker-bg;
-  border-radius: 10px;
+  height: 10px;
+  background: rgba($primary-purple-light, 0.15);
+  border-radius: 50px;
   overflow: hidden;
-  margin: 20px 0;
+  margin: 1.5rem 0;
 }
 
 .progress {
   height: 100%;
-  background: $primary-purple;
+  background: linear-gradient(90deg, $primary-purple, $primary-purple-light);
   width: 0%;
   transition: width 0.3s ease;
+  border-radius: 50px;
 }
 
 #yoyo-video-message {
-  padding: 10px;
-  border-radius: 4px;
-  margin-top: 20px;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+  font-weight: 500;
+  text-align: center;
 
   &.success {
     background-color: rgba($primary-purple, 0.2);
-    color: color.adjust($primary-purple-light, $lightness: 20%);
+    color: $primary-purple-light;
+    border-left: 4px solid $primary-purple-light;
   }
 
   &.error {
-    background-color: rgba(red, 0.2);
+    background-color: rgba(red, 0.15);
+    // Replace lighten() with color.adjust()
     color: color.adjust(red, $lightness: 20%);
+    border-left: 4px solid red;
+  }
+}
+
+// Add styles for when a file is selected
+#drag-drop-area.file-selected {
+  border-color: $primary-purple-light;
+  background: rgba($primary-purple, 0.15);
+
+  .drag-drop-content {
+    p {
+      color: $primary-purple-light;
+      font-weight: 500;
+    }
   }
 }

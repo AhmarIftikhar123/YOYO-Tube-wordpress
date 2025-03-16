@@ -13,12 +13,12 @@ get_header();
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="login-signup-container">
-                    <ul class="nav nav-tabs d-flex justify-content-between px-4" id="authTabs" role="tablist">
-                        <li class="nav-item" role="presentation">
+                    <ul class="nav ms-0 nav-tabs d-flex justify-content-between px-4" id="authTabs" role="tablist">
+                        <li class="nav-item px-5" role="presentation">
                             <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login"
                                 type="button" role="tab" aria-controls="login" aria-selected="true">Login</button>
                         </li>
-                        <li class="nav-item" role="presentation">
+                        <li class="nav-item px-5" role="presentation">
                             <button class="nav-link" id="signup-tab" data-bs-toggle="tab" data-bs-target="#signup"
                                 type="button" role="tab" aria-controls="signup" aria-selected="false">Sign Up</button>
                         </li>

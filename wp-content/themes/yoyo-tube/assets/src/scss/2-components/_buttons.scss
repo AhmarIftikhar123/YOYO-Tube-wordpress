@@ -1,17 +1,60 @@
 @use '../0-abstracts/abstracts' as *;
 @use 'sass:color';
+// Buttons
 .btn-primary {
-  color: $primary-purple;
-  background: transparent;
-  padding: 10px 20px;
-  border-color: $primary-purple;
-  border-radius: 4px;
+  display: block;
+  width: auto;
+  min-width: 180px;
+  margin: 2rem auto 1rem;
+  padding: 0.75rem 2rem;
+  background: $primary-purple;
+  color: $text-light;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
-  display: inline-block;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba($primary-purple-dark, 0.125);
 
   &:hover {
-    border-color: $primary-purple;
-    background: $primary-purple-light;
+    // Replace lighten() with color.adjust()
+    background: color.adjust($primary-purple, $lightness: 5%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba($primary-purple-dark, 0.6);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba($primary-purple-dark, 0.5);
+  }
+}
+
+// Buttons
+.btn-secondary {
+  display: block;
+  width: auto;
+  min-width: 180px;
+  // margin: 2rem auto 1rem;
+  padding: 0.75rem 2rem;
+  background: $primary-purple-dark; // Softer slate blue
+  color: $text-light;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba($primary-purple, 0.125);
+
+  &:hover {
+    background: color.adjust($primary-purple-dark, $lightness: 5%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba($primary-purple, 0.6);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba($primary-purple, 0.5);
   }
 }
