@@ -13,6 +13,8 @@ const entery = {
   redirect: JS_DIR + "redirect-script/redirect.js",
   authentication: JS_DIR + "authentication-scipts/authentication.js",
   stripe: JS_DIR + "stripe/stripe-payment-handler.js",
+  load_more: JS_DIR + "videos/load-more.js",
+  author: JS_DIR + "author-profile/author-profile.js",
 };
 module.exports = {
   entry: entery,

@@ -16,7 +16,13 @@ jQuery(document).ready(function ($) {
   };
 
   const card = elements.create("card", { style: style });
-  card.mount("#card-element");
+  const card_element = $("#card-element");
+  if (card_element.length) {
+    // Proper check
+    card.mount(card_element[0]); // Use the raw DOM element
+  } else {
+    console.error("Card element not found!");
+  }
 
   // Toast notification function
   function showToast(message, type = "info") {

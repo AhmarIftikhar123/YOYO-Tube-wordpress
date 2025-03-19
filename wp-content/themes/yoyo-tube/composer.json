@@ -31,7 +31,8 @@
       "Core\\": "inc/classes/core",
       "Videos\\": "inc/classes/core/videos",
       "Authentication\\": "inc/classes/core/authentication",
-      "Stripe\\": "inc/classes/core/stripe"
+      "Stripe\\": "inc/classes/core/stripe",
+      "Author\\": "inc/classes/core/author"
     }
   },
   "config": {

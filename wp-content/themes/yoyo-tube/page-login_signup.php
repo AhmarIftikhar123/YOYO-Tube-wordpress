@@ -75,14 +75,13 @@ get_header();
                                 <div class="mb-3">
                                     <label for="signup-role" class="form-label">Role</label>
                                     <select class="form-select" id="signup-role" required>
-                                        <option value="subscriber">User</option>
-                                        <option value="contributor">Seller</option>
-                                        <option value="administrator">Admin</option>
+                                        <option value="subscriber">Author</option>
+                                        <option value="administrator">Subscriber</option>
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-primary w-100">Sign Up</button>
 
-                                <div class="social-login-divider text-center my-2 text-center my-2">
+                                <div class="social-login-divider text-center my-2">
                                     <span>OR</span>
                                 </div>
 

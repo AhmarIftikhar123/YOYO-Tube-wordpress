@@ -109,7 +109,17 @@ class assets
                         
         wp_enqueue_script('stripe-js', 'https://js.stripe.com/v3/');
 
-        wp_enqueue_script('stripe-payment-handler', BUILD_PATH .  '/stripe.js', ['stripe-js'], filemtime(TEMPLATE_DIR . "/dist/stripe.js"), true);
+        if(is_page('video-player')) {
+            wp_enqueue_script('stripe-payment-handler', BUILD_PATH .  '/stripe.js', ['stripe-js'], filemtime(TEMPLATE_DIR . "/dist/stripe.js"), true);
+        }
+        if (is_front_page()) {
+            wp_enqueue_script('load-more', BUILD_PATH . '/load_more.js', array('jquery'), filemtime(TEMPLATE_DIR . "/dist/load-more.js"), true);
+        }    
+
+        // Enqueue author profile styles
+        if(is_author()) {
+            wp_enqueue_script('author', BUILD_PATH . '/author.js', array('jquery'), filemtime(TEMPLATE_DIR . "/dist/author.js"), true);
+        }
     }
 
     public function enqueue_admin_scripts()
@@ -138,6 +148,13 @@ class assets
             'stripe_nonce' => wp_create_nonce('yoyo_stripe_nonce'),
             'home_url' => home_url(),
         ]);
+        if(is_front_page()){
+            // Pass AJAX URL and nonce to load-more.js
+            wp_localize_script('load-more', 'yoyo_ajax_params', array(
+                'ajax_url' => admin_url('admin-ajax.php'),
+                'nonce' => wp_create_nonce('yoyo_load_more_nonce')
+            ));
+        }
     }
 
 }

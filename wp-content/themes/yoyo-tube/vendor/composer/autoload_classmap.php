@@ -8,7 +8,9 @@ $baseDir = dirname($vendorDir);
 return array(
     'Authentication\\authentication' => $baseDir . '/inc/classes/core/authentication/authentication.php',
     'Authentication\\user_avatar' => $baseDir . '/inc/classes/core/authentication/user_avatar.php',
+    'Author\\Custom_author_profile' => $baseDir . '/inc/classes/core/author/Custom_author_profile.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'Core\\Short_codes' => $baseDir . '/inc/classes/core/Short_codes.php',
     'Core\\Social_Walker' => $baseDir . '/inc/classes/core/Social_Walker.php',
     'Core\\assets' => $baseDir . '/inc/classes/core/assets.php',
     'Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin' => $vendorDir . '/dealerdirect/phpcodesniffer-composer-installer/src/Plugin.php',
@@ -671,6 +673,8 @@ return array(
     'Stripe\\Webhook' => $vendorDir . '/stripe/stripe-php/lib/Webhook.php',
     'Stripe\\WebhookEndpoint' => $vendorDir . '/stripe/stripe-php/lib/WebhookEndpoint.php',
     'Stripe\\WebhookSignature' => $vendorDir . '/stripe/stripe-php/lib/WebhookSignature.php',
+    'Stripe\\stripe_ajax' => $baseDir . '/inc/classes/core/stripe/stripe_ajax.php',
+    'Stripe\\stripe_payment' => $baseDir . '/inc/classes/core/stripe/stripe_payment.php',
     'Symfony\\Component\\Finder\\Comparator\\Comparator' => $vendorDir . '/symfony/finder/Comparator/Comparator.php',
     'Symfony\\Component\\Finder\\Comparator\\DateComparator' => $vendorDir . '/symfony/finder/Comparator/DateComparator.php',
     'Symfony\\Component\\Finder\\Comparator\\NumberComparator' => $vendorDir . '/symfony/finder/Comparator/NumberComparator.php',

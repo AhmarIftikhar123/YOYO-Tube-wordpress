@@ -25,7 +25,7 @@ $get_current_user_id = get_current_user_id(); // Get the current user ID
 			<!-- Site Info Section -->
 			<div class="col-md-4 mx-auto">
 				<h5 class="mb-1 fw-semibold">YoYo Tube</h5>
-				<p class="mb-1">Share and enjoy amazing Vid!</p>
+				<p class="my-4">Share and enjoy amazing Vid!</p>
 			</div>
 
 			<!-- Dynamic Footer Menu -->
@@ -44,7 +44,7 @@ $get_current_user_id = get_current_user_id(); // Get the current user ID
 				<h5 class="mb-1 fw-semibold">Follow Us</h5>
 				<?php if (has_nav_menu('yoyo-tube-social-menu')): ?>
 					<div
-						class="social_media_icons d-flex align-items-center justify-content-center gap-2 my-2">
+						class="social_media_icons d-flex align-items-center justify-content-center gap-2 my-4">
 						<?php
 						wp_nav_menu(array(
 							'theme_location' => 'yoyo-tube-social-menu',

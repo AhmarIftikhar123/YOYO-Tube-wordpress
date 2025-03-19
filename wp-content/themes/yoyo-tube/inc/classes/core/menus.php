@@ -98,10 +98,14 @@ class Menus
 
     public function render_profile_image($current_user_id)
     {
+        if (!is_author()) {
+            $user_id = get_current_user_id();
+            $profile_url = get_author_posts_url($user_id);
+        }
         ?>
-        <li class="nav-item text-center profile_image_container">
+        <a href="<?= esc_url($profile_url ?? "") ?>" class="nav-item text-center profile_image_container">
             <?= do_shortcode('[google_avatar]') ?>
-        </li>
+        </a>
         <?php ;
     }
 

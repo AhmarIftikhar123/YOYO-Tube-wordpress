@@ -3,11 +3,13 @@ namespace Inc\classes;
 
 use Authentication\authentication;
 use Authentication\user_avatar;
+use Author\Custom_author_profile;
 use Core\{assets, Menus, RegisterPostTypes};
 use Core\Comments_support;
 use Core\Short_codes;
 use Inc\traits\singleton;
 use Stripe\stripe_ajax;
+use Videos\Load_more_ajax;
 use Videos\Videos;
 class yoyo_tube
 {
@@ -23,6 +25,8 @@ class yoyo_tube
         stripe_ajax::getInstance();
         Short_codes::getInstance();
         Comments_support::getInstance();
+        Load_more_ajax::getInstance();
+        Custom_author_profile::getInstance();
         $this->setup_hooks();
     }
 
@@ -33,7 +37,7 @@ class yoyo_tube
     }
     public function Custom_body_classes()
     {
-        $classes[] = 'container'; // Add your class here
+        $classes[] = ''; // Add your class here
         return $classes;
     }
     public function yoyo_tube_custom_theme_support()

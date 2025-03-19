@@ -58,6 +58,7 @@ class ComposerStaticInit8de789a2c20183752e72c14c93a923cf
         ),
         'A' => 
         array (
+            'Author\\' => 7,
             'Authentication\\' => 15,
         ),
     );
@@ -116,6 +117,10 @@ class ComposerStaticInit8de789a2c20183752e72c14c93a923cf
         array (
             0 => __DIR__ . '/../..' . '/inc/classes',
         ),
+        'Author\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/inc/classes/core/author',
+        ),
         'Authentication\\' => 
         array (
             0 => __DIR__ . '/../..' . '/inc/classes/core/authentication',
@@ -149,7 +154,9 @@ class ComposerStaticInit8de789a2c20183752e72c14c93a923cf
     public static $classMap = array (
         'Authentication\\authentication' => __DIR__ . '/../..' . '/inc/classes/core/authentication/authentication.php',
         'Authentication\\user_avatar' => __DIR__ . '/../..' . '/inc/classes/core/authentication/user_avatar.php',
+        'Author\\Custom_author_profile' => __DIR__ . '/../..' . '/inc/classes/core/author/Custom_author_profile.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Core\\Short_codes' => __DIR__ . '/../..' . '/inc/classes/core/Short_codes.php',
         'Core\\Social_Walker' => __DIR__ . '/../..' . '/inc/classes/core/Social_Walker.php',
         'Core\\assets' => __DIR__ . '/../..' . '/inc/classes/core/assets.php',
         'Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin' => __DIR__ . '/..' . '/dealerdirect/phpcodesniffer-composer-installer/src/Plugin.php',
@@ -812,6 +819,8 @@ class ComposerStaticInit8de789a2c20183752e72c14c93a923cf
         'Stripe\\Webhook' => __DIR__ . '/..' . '/stripe/stripe-php/lib/Webhook.php',
         'Stripe\\WebhookEndpoint' => __DIR__ . '/..' . '/stripe/stripe-php/lib/WebhookEndpoint.php',
         'Stripe\\WebhookSignature' => __DIR__ . '/..' . '/stripe/stripe-php/lib/WebhookSignature.php',
+        'Stripe\\stripe_ajax' => __DIR__ . '/../..' . '/inc/classes/core/stripe/stripe_ajax.php',
+        'Stripe\\stripe_payment' => __DIR__ . '/../..' . '/inc/classes/core/stripe/stripe_payment.php',
         'Symfony\\Component\\Finder\\Comparator\\Comparator' => __DIR__ . '/..' . '/symfony/finder/Comparator/Comparator.php',
         'Symfony\\Component\\Finder\\Comparator\\DateComparator' => __DIR__ . '/..' . '/symfony/finder/Comparator/DateComparator.php',
         'Symfony\\Component\\Finder\\Comparator\\NumberComparator' => __DIR__ . '/..' . '/symfony/finder/Comparator/NumberComparator.php',

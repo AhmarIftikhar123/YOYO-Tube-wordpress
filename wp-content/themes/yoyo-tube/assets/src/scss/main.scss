@@ -5,3 +5,25 @@
 @use '4-pages/pages' as *;
 @use '5-themes/themes' as *;
 @use '6-vendors/vendors' as *;
+
+// Global styles for sticky footer
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: $darker-bg;
+  color: $text-light;
+  margin: 0;
+  padding: 0;
+}
+
+.site-content {
+  flex: 1 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}

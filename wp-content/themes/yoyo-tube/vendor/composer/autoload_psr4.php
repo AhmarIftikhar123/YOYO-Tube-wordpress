@@ -19,5 +19,6 @@ return array(
     'Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\' => array($vendorDir . '/dealerdirect/phpcodesniffer-composer-installer/src'),
     'Core\\' => array($baseDir . '/inc/classes/core'),
     'Classes\\' => array($baseDir . '/inc/classes'),
+    'Author\\' => array($baseDir . '/inc/classes/core/author'),
     'Authentication\\' => array($baseDir . '/inc/classes/core/authentication'),
 );
