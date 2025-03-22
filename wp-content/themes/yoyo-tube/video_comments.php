@@ -5,134 +5,101 @@
  * @package YOYO-Tube
  */
 
+// Exit if accessed directly
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+// Don't load comments if password protected
 if (post_password_required()) {
     return;
 }
 
-// Get the video ID from the URL
-$video_id = isset($_GET['video_id']) ? intval($_GET['video_id']) : 0;
-$video_url = $video_id ? wp_get_attachment_url($video_id) : '';
+// Get video_id from URL or post meta
+$video_id = isset($_GET['video_id']) ? sanitize_text_field($_GET['video_id']) : '';
+if (empty($video_id)) {
+    $video_id = get_post_meta(get_the_ID(), 'video_id', true);
+}
 ?>
 
-<div id="comments" class="comments-area">
-
+<div id="comments" class="video-comments">
     <?php if (have_comments()) : ?>
         <h2 class="comments-title">
             <?php
-            $comments_number = get_comments_number();
+            $comment_count = get_comments_number();
             printf(
-                _nx('%1$s Comment', '%1$s Comments', $comments_number, 'comments title', 'YOYO-Tube'),
-                number_format_i18n($comments_number)
+                esc_html(_n('%1$s Comment', '%1$s Comments', $comment_count, 'YOYO-Tube')),
+                number_format_i18n($comment_count)
             );
             ?>
         </h2>
 
-        <div class="comment-list">
+        <ol class="comment-list">
             <?php
             wp_list_comments(array(
-                'style' => 'div',
-                'short_ping' => true,
+                'style'       => 'ol',
+                'short_ping'  => true,
                 'avatar_size' => 50,
-                'callback' => 'yoyo_custom_comment'
             ));
             ?>
-        </div>
+        </ol>
 
-        <?php if (get_comment_pages_count() > 1 && get_option('page_comments')) : ?>
-            <nav class="comment-navigation">
-                <div class="nav-previous">
-                    <?php 
-                    ob_start();
-                    previous_comments_link(__('Older Comments', 'yoyo-tube'));
-                    $prev_link = ob_get_clean();
+        <?php
+        // Comment pagination
+        the_comments_pagination(array(
+            'prev_text' => '<i class="fas fa-chevron-left"></i> ' . __('Previous', 'YOYO-Tube'),
+            'next_text' => __('Next', 'YOYO-Tube') . ' <i class="fas fa-chevron-right"></i>',
+        ));
+        ?>
 
-                    if ($video_id) {
-                        $prev_link = preg_replace_callback(
-                            '/href=["\']([^"\']+)["\']/i',
-                            function ($matches) use ($video_id) {
-                                $url_parts = parse_url($matches[1]);
-                                $host = isset($url_parts['port']) ? $url_parts['host'] . ':' . $url_parts['port'] : $url_parts['host'];
-                                $query = isset($url_parts['query']) ? $url_parts['query'] . '&video_id=' . $video_id : 'video_id=' . $video_id;
-                                $new_url = $url_parts['scheme'] . '://' . $host . $url_parts['path'] . '?' . $query;
-
-                                if (isset($url_parts['fragment'])) {
-                                    $new_url .= '#' . $url_parts['fragment'];
-                                }
-                                return 'href="' . esc_url($new_url) . '"';
-                            },
-                            $prev_link
-                        );
-                    }
-                    echo $prev_link;
-                    ?>
-                </div>
-                <div class="nav-next">
-                    <?php 
-                    ob_start();
-                    next_comments_link(__('Newer Comments', 'yoyo-tube'));
-                    $next_link = ob_get_clean();
-
-                    if ($video_id) {
-                        $next_link = preg_replace_callback(
-                            '/href=["\']([^"\']+)["\']/i',
-                            function ($matches) use ($video_id) {
-                                $url_parts = parse_url($matches[1]);
-                                $host = isset($url_parts['port']) ? $url_parts['host'] . ':' . $url_parts['port'] : $url_parts['host'];
-                                $query = isset($url_parts['query']) ? $url_parts['query'] . '&video_id=' . $video_id : 'video_id=' . $video_id;
-                                $new_url = $url_parts['scheme'] . '://' . $host . $url_parts['path'] . '?' . $query;
-
-                                if (isset($url_parts['fragment'])) {
-                                    $new_url .= '#' . $url_parts['fragment'];
-                                }
-                                return 'href="' . esc_url($new_url) . '"';
-                            },
-                            $next_link
-                        );
-                    }
-                    echo $next_link;
-                    ?>
-                </div>
-            </nav>
-        <?php endif; ?>
     <?php endif; ?>
 
     <?php if (!comments_open() && get_comments_number() && post_type_supports(get_post_type(), 'comments')) : ?>
-        <p class="no-comments"><?php _e('Comments are closed.', 'yoyo-tube'); ?></p>
+        <p class="no-comments"><?php esc_html_e('Comments are closed.', 'YOYO-Tube'); ?></p>
     <?php endif; ?>
 
     <?php
-    // Comment form settings
-    $comments_args = array(
-        'title_reply' => __('Leave a Comment', 'yoyo-tube'),
-        'class_form' => 'comment-form',
-        'comment_field' => '<div class="comment-form-comment">
-                                <label for="comment">' . _x('Comment', 'noun') . '</label>
-                                <textarea id="comment" name="comment" rows="5" required></textarea>
-                            </div>',
-        'submit_button' => '<button type="submit" name="submit" class="btn-primary">Post Comment</button>',
-        'submit_field' => '<div class="form-submit">%1$s %2$s</div>',
-        'fields' => array(
-            'url' => '', // Remove website field
-        ),
+    // Custom comment form with video_id
+    $commenter = wp_get_current_commenter();
+    $req = get_option('require_name_email');
+    $aria_req = ($req ? " aria-required='true'" : '');
+    
+    $fields = array(
+        'author' => '<div class="comment-form-author form-group">' .
+                    '<label for="author">' . __('Name', 'YOYO-Tube') . ($req ? ' <span class="required">*</span>' : '') . '</label>' .
+                    '<input id="author" name="author" type="text" value="' . esc_attr($commenter['comment_author']) . '" ' . $aria_req . ' class="form-control" />' .
+                    '</div>',
+        'email'  => '<div class="comment-form-email form-group">' .
+                    '<label for="email">' . __('Email', 'YOYO-Tube') . ($req ? ' <span class="required">*</span>' : '') . '</label>' .
+                    '<input id="email" name="email" type="email" value="' . esc_attr($commenter['comment_author_email']) . '" ' . $aria_req . ' class="form-control" />' .
+                    '</div>',
+        'url'    => '<div class="comment-form-url form-group">' .
+                    '<label for="url">' . __('Website', 'YOYO-Tube') . '</label>' .
+                    '<input id="url" name="url" type="url" value="' . esc_attr($commenter['comment_author_url']) . '" class="form-control" />' .
+                    '</div>',
     );
 
-    // Preserve video_id in the comment form
-    add_action('comment_form_after_fields', function() use ($video_id) {
-        if ($video_id) {
-            echo '<input type="hidden" name="video_id" value="' . esc_attr($video_id) . '">';
-        }
-    });
+    // Add hidden field inside comment_field to ensure it gets included in the form
+    $comment_field = '<div class="comment-form-comment form-group">' .
+                     '<label for="comment">' . __('Comment', 'YOYO-Tube') . ' <span class="required">*</span></label>' .
+                     '<textarea id="comment" name="comment" class="form-control" rows="5" required="required"></textarea>' .
+                     '</div>';
+
+    if (!empty($video_id)) {
+        $comment_field .= '<input type="hidden" name="yoyo_video_id" value="' . esc_attr($video_id) . '">';
+    }
+
+    $comments_args = array(
+        'fields'               => $fields,
+        'comment_field'        => $comment_field,
+        'class_submit'         => 'submit btn btn-primary',
+        'title_reply'          => __('Leave a Comment', 'YOYO-Tube'),
+        'title_reply_to'       => __('Reply to %s', 'YOYO-Tube'),
+        'cancel_reply_link'    => __('Cancel Reply', 'YOYO-Tube'),
+        'label_submit'         => __('Post Comment', 'YOYO-Tube'),
+        'format'               => 'html5',
+    );
 
     comment_form($comments_args);
     ?>
-
 </div>
-
-<?php
-// Ensure video_id is passed to the comment form
-add_action('comment_form_after_fields', function() {
-    if (isset($_GET['video_id'])) {
-        echo '<input type="hidden" name="video_id" value="' . esc_attr($_GET['video_id']) . '">';
-    }
-});
-?>

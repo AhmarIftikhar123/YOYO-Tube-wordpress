@@ -3,6 +3,12 @@
  * Template Name: Video Upload Page
  */
 get_header();
+if (!is_user_logged_in()) {
+    echo do_shortcode('[yoyo_restricted_content redirect="' . home_url('/authentication/') . '" message="You don\'t have an account. Please log in first. We are redirecting you to the authentication page." button_text="Click Here"]
+This content is restricted to logged-in users only.
+[/yoyo_restricted_content]');
+}
+else{
 ?>
 
 <div class="yoyo-upload-container">
@@ -71,5 +77,5 @@ get_header();
 
     <div id="yoyo-video-message"></div>
 </div>
-
+<?php } ?>
 <?php get_footer(); ?>

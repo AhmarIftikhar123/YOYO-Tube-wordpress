@@ -138,6 +138,18 @@
     color: $accent-teal;
   }
 
+  &:has(i.fa-user-tag) {
+    i {
+      color: $accent-pink;
+    }
+
+    span {
+      text-transform: capitalize;
+      font-weight: 500;
+      color: $primary-purple-light;
+    }
+  }
+
   a {
     color: $text-muted;
     text-decoration: none;

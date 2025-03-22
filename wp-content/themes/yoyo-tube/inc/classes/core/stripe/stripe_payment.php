@@ -69,12 +69,12 @@ class stripe_payment
             <?php comments_template('video_comments.php'); ?>
         </div>
         <?php
-                // enqueue video_player JS file for Video Player
-                wp_register_script('video-player-script', BUILD_PATH . '/video_player.js', array('jquery'), filemtime(TEMPLATE_DIR . "/dist/vidoe_player.js"), true);
+        // enqueue video_player JS file for Video Player
+        wp_register_script('video-player-script', BUILD_PATH . '/video_player.js', array('jquery'), filemtime(TEMPLATE_DIR . "/dist/vidoe_player.js"), true);
 
-                if (is_page('video-player')) {
-                    wp_enqueue_script('video-player-script');
-                }
+        if (is_page('video-player')) {
+            wp_enqueue_script('video-player-script');
+        }
     }
 
     private function render_video_details()
@@ -106,7 +106,7 @@ class stripe_payment
             </form>
         </div>
         <?= do_shortcode('[yoyo_toast]'); ?>
-        <?php
+    <?php
     }
 
     private function has_user_paid()
@@ -114,7 +114,7 @@ class stripe_payment
         global $wpdb;
         $user_id = get_current_user_id(); // Get the logged-in user ID
         $video_id = $this->video_id; // The video ID you want to check
-        
+
         $payment = $wpdb->get_row(
             $wpdb->prepare(
                 "SELECT * FROM wp_video_payments WHERE user_id = %d AND video_id = %d AND payment_status = 'succeeded'",
@@ -136,7 +136,9 @@ class stripe_payment
                 <button class="play-pause-btn" title="Play/Pause">
                     <i class="fas fa-play"></i>
                 </button>
-                <input type="range" class="seek-bar" value="0">
+                <div class="seekbar-wrapper w-100 position-relative">
+                    <input type="range" class="seek-bar" value="0">
+                </div>
                 <div class="time d-flex gap-2">
                     <span class="current-time">0:00</span>
                     /
@@ -146,7 +148,9 @@ class stripe_payment
                     <button class="mute-btn" title="Mute/Unmute">
                         <i class="fas fa-volume-up"></i>
                     </button>
-                    <input type="range" class="volume-bar" min="0" max="1" step="0.1" value="1">
+                    <div class="volume-bar-wrapper w-100 position-relative">
+                        <input type="range" class="volume-bar" min="0" max="1" step="0.1" value="1">
+                    </div>
                 </div>
                 <button class="fullscreen-btn" title="Fullscreen">
                     <i class="fas fa-expand"></i>

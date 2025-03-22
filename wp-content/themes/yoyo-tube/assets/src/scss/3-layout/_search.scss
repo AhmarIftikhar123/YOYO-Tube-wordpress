@@ -1,0 +1,459 @@
+@use '../0-abstracts/abstracts' as *;
+@use 'sass:color';
+
+// Search form styling
+.search-container {
+  position: relative;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  transition: all 0.3s ease;
+  z-index: 1001; // Increase z-index to ensure it's above other elements
+
+  @media (max-width: 991px) {
+    margin: 0.5rem 0;
+    width: 100%;
+  }
+
+  .search-toggle {
+    width: 40px;
+    height: 40px;
+    background-color: rgba($primary-purple, 0.15);
+    border: none;
+    border-radius: 50%;
+    color: $text-light;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative; // Ensure position context for absolute elements
+
+    &:hover {
+      background-color: rgba($primary-purple, 0.3);
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba($primary-purple, 0.3);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba($primary-purple, 0.4);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    i {
+      font-size: 1.2rem;
+      color: $primary-purple-light;
+    }
+
+    @media (max-width: 991px) {
+      display: none;
+    }
+  }
+
+  .search-form {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    background-color: rgba($darker-bg, 0.95);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: -100;
+
+    &.active {
+      width: 300px;
+
+      .search-input {
+        width: calc(100% - 70px);
+        padding: 0 2.25rem;
+        opacity: 1;
+      }
+
+      .search-submit {
+        pointer-events: auto;
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 991px) {
+      position: relative;
+      width: 100%;
+      height: 40px;
+      border-radius: 20px;
+
+      .search-input {
+        width: calc(100% - 70px);
+        padding: 0 15px;
+        opacity: 1;
+      }
+
+      .search-submit {
+        pointer-events: auto;
+        opacity: 1;
+      }
+    }
+  }
+
+  .search-input {
+    width: 0;
+    height: 100%;
+    background: transparent;
+    border: none;
+    color: $text-light !important;
+    font-size: 0.95rem;
+    padding: 0;
+    opacity: 0;
+    transition: all 0.3s ease;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: $text-muted;
+    }
+
+    @media (max-width: 991px) {
+      width: calc(100% - 70px);
+      padding: 0 15px;
+      opacity: 1;
+    }
+  }
+
+  .search-submit {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    background-color: rgba($primary-purple, 0.2);
+    border: none;
+    border-radius: 50%;
+    color: $primary-purple-light;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    opacity: 0;
+
+    &:hover {
+      background-color: rgba($primary-purple, 0.4);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba($primary-purple, 0.4);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    i {
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 991px) {
+      pointer-events: auto;
+      opacity: 1;
+    }
+  }
+
+  .search-close {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    color: $text-muted;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+
+    &.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    &:hover {
+      color: $text-light;
+    }
+
+    &:focus {
+      outline: none;
+      color: $text-light;
+    }
+
+    i {
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 991px) {
+      display: none;
+    }
+  }
+}
+
+// Search results styling
+.search-results-container {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  width: 350px;
+  max-height: 500px;
+  overflow-y: auto;
+  background-color: $card-bg;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  display: none;
+  padding: 1rem;
+
+  &.active {
+    display: block;
+    animation: fadeInDown 0.3s ease forwards;
+  }
+
+  @media (max-width: 991px) {
+    position: fixed;
+    top: $header-height;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-height: calc(100vh - #{$header-height});
+    border-radius: 0;
+  }
+
+  .search-results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba($primary-purple, 0.1);
+
+    h3 {
+      font-size: 1.1rem;
+      color: $text-light;
+      margin: 0;
+    }
+
+    .close-results {
+      background: transparent;
+      border: none;
+      color: $text-muted;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        color: $text-light;
+      }
+
+      i {
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  .search-results-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .search-result-item {
+    display: flex;
+    gap: 1rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: rgba($primary-purple, 0.1);
+    }
+
+    .result-thumbnail {
+      width: 80px;
+      height: 45px;
+      border-radius: 6px;
+      overflow: hidden;
+      flex-shrink: 0;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .result-content {
+      flex: 1;
+      min-width: 0;
+
+      .result-title {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: $text-light;
+        margin: 0 0 0.25rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        a {
+          color: inherit;
+          text-decoration: none;
+          transition: color 0.2s ease;
+
+          &:hover {
+            color: $primary-purple-light;
+          }
+        }
+      }
+
+      .result-meta {
+        display: flex;
+        gap: 0.75rem;
+        font-size: 0.8rem;
+        color: $text-muted;
+
+        .result-category,
+        .result-tags {
+          display: flex;
+          align-items: center;
+          gap: 0.25rem;
+
+          i {
+            font-size: 0.75rem;
+          }
+        }
+      }
+    }
+
+    .result-price {
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      align-self: flex-start;
+
+      &.free {
+        background-color: rgba(0, 128, 0, 0.2);
+        color: #4ade80;
+      }
+
+      &.paid {
+        background-color: rgba($primary-purple, 0.2);
+        color: $primary-purple-light;
+      }
+    }
+  }
+
+  .no-results {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: $text-muted;
+
+    i {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+
+    h4 {
+      font-size: 1.1rem;
+      color: $text-light;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+      margin-bottom: 0;
+    }
+  }
+
+  .search-results-footer {
+    text-align: center;
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba($primary-purple, 0.1);
+
+    .view-all-results {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background-color: rgba($primary-purple, 0.15);
+      color: $primary-purple-light;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background-color: rgba($primary-purple, 0.25);
+        transform: translateY(-2px);
+      }
+
+      i {
+        margin-left: 0.25rem;
+      }
+    }
+  }
+}
+
+// Loading indicator
+.search-loading {
+  display: none;
+  text-align: center;
+  padding: 2rem;
+
+  &.active {
+    display: block;
+  }
+
+  .spinner {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 1rem;
+    border: 3px solid rgba($primary-purple, 0.1);
+    border-top-color: $primary-purple;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  p {
+    color: $text-muted;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

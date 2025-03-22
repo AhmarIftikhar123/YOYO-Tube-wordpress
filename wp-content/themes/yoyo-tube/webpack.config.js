@@ -15,6 +15,7 @@ const entery = {
   stripe: JS_DIR + "stripe/stripe-payment-handler.js",
   load_more: JS_DIR + "videos/load-more.js",
   author: JS_DIR + "author-profile/author-profile.js",
+  contact_us: JS_DIR + "contact-us/contact_us.js",
 };
 module.exports = {
   entry: entery,

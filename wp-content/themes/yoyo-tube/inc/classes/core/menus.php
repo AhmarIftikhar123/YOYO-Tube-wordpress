@@ -57,8 +57,8 @@ class Menus
     public function render_dropdown_menu($menu_item, $has_children, $is_header)
     {
         ?>
-        <li class="nav-item dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <li class="nav-item dropdown m-0">
+            <button class="btn btn-secondary dropdown-toggle mx-auto" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <?= esc_html($menu_item->title) ?>
             </button>
             <ul class="dropdown-menu">
@@ -96,6 +96,56 @@ class Menus
         <?php
     }
 
+    /**
+     * Render search form in the navigation
+     */
+    public function render_search_form()
+    {
+        ?>
+        <li class="nav-item search-container">
+            <button type="button" class="search-toggle">
+                <i class="fas fa-search"></i>
+            </button>
+            
+            <form class="search-form" role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
+                <input type="hidden" name="post_type" value="yoyo_videos">
+                <button type="button" class="search-close">
+                    <i class="fas fa-times"></i>
+                </button>
+                <input type="search" class="search-input" placeholder="Search videos..." name="s" autocomplete="off">
+                <button type="submit" class="search-submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+            
+            <!-- Search Results Dropdown -->
+            <div class="search-results-container">
+                <div class="search-results-header">
+                    <h3>Results <span class="results-count">0</span></h3>
+                    <button type="button" class="close-results">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="search-loading">
+                    <div class="spinner"></div>
+                    <p>Searching...</p>
+                </div>
+                
+                <div class="search-results-list">
+                    <!-- Results will be loaded here via AJAX -->
+                </div>
+                
+                <div class="search-results-footer">
+                    <a href="#" class="view-all-results">
+                        View all results <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </li>
+        <?php
+    }
+
     public function render_profile_image($current_user_id)
     {
         if (!is_author()) {
@@ -127,8 +177,10 @@ class Menus
                 <?php if (!$is_header)
                     return; ?>
                 <?php // $this->render_theme_toggler(); ?>
+                <?php $this->render_search_form(); // Add search form before profile image ?>
                 <?php $this->render_profile_image($current_user_id); ?>
             </ul>
         <?php endif;
     }
 }
+

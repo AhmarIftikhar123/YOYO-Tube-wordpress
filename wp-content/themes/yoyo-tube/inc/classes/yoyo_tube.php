@@ -4,9 +4,11 @@ namespace Inc\classes;
 use Authentication\authentication;
 use Authentication\user_avatar;
 use Author\Custom_author_profile;
+use Classes\YOYO_Ajax_Search;
 use Core\{assets, Menus, RegisterPostTypes};
 use Core\Comments_support;
 use Core\Short_codes;
+use Core\Yoyo_contact_form;
 use Inc\traits\singleton;
 use Stripe\stripe_ajax;
 use Videos\Load_more_ajax;
@@ -27,6 +29,8 @@ class yoyo_tube
         Comments_support::getInstance();
         Load_more_ajax::getInstance();
         Custom_author_profile::getInstance();
+        YOYO_Ajax_Search::getInstance();
+        Yoyo_contact_form::getInstance();
         $this->setup_hooks();
     }
 

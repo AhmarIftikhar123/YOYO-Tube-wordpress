@@ -1,5 +1,6 @@
 <?php
 /**
+ * Template Name: Author Page
  * The template for displaying author pages
  *
  * @package YOYO-Tube
@@ -41,20 +42,20 @@ $youtube = get_the_author_meta('youtube', $author_id);
         </div>
         <div class="author-info">
             <h1 class="author-name"><?php echo esc_html($curauth->display_name); ?></h1>
-            
-            <?php if (!empty($author_bio)) : ?>
+
+            <?php if (!empty($author_bio)): ?>
                 <div class="author-bio">
                     <?php echo wpautop(esc_html($author_bio)); ?>
                 </div>
             <?php endif; ?>
-            
+
             <div class="author-meta">
                 <div class="author-meta-item">
                     <i class="fas fa-calendar-alt"></i>
                     <span>Member since <?php echo esc_html($author_registered); ?></span>
                 </div>
-                
-                <?php if (!empty($author_website)) : ?>
+
+                <?php if (!empty($author_website)): ?>
                     <div class="author-meta-item">
                         <i class="fas fa-globe"></i>
                         <a href="<?php echo esc_url($author_website); ?>" target="_blank" rel="noopener noreferrer">
@@ -62,35 +63,52 @@ $youtube = get_the_author_meta('youtube', $author_id);
                         </a>
                     </div>
                 <?php endif; ?>
-                
+
                 <div class="author-meta-item">
                     <i class="fas fa-video"></i>
                     <span><?php echo esc_html($author_videos_count); ?> videos</span>
                 </div>
+
+                <!-- Add author role display -->
+                <?php
+                $user_info = get_userdata($author_id);
+                if ($user_info && !empty($user_info->roles)) {
+                    $role_display = array_map('ucfirst', $user_info->roles);
+                    $role_text = implode(', ', $role_display);
+                    ?>
+                    <div class="author-meta-item">
+                        <i class="fas fa-user-tag"></i>
+                        <span><?php echo esc_html($role_text); ?></span>
+                    </div>
+                <?php } ?>
             </div>
-            
-            <?php if (!empty($twitter) || !empty($facebook) || !empty($instagram) || !empty($youtube)) : ?>
+
+            <?php if (!empty($twitter) || !empty($facebook) || !empty($instagram) || !empty($youtube)): ?>
                 <div class="author-social">
-                    <?php if (!empty($twitter)) : ?>
-                        <a href="<?php echo esc_url($twitter); ?>" class="social-icon" target="_blank" rel="noopener noreferrer">
+                    <?php if (!empty($twitter)): ?>
+                        <a href="<?php echo esc_url($twitter); ?>" class="social-icon" target="_blank"
+                            rel="noopener noreferrer">
                             <i class="fab fa-twitter"></i>
                         </a>
                     <?php endif; ?>
-                    
-                    <?php if (!empty($facebook)) : ?>
-                        <a href="<?php echo esc_url($facebook); ?>" class="social-icon" target="_blank" rel="noopener noreferrer">
+
+                    <?php if (!empty($facebook)): ?>
+                        <a href="<?php echo esc_url($facebook); ?>" class="social-icon" target="_blank"
+                            rel="noopener noreferrer">
                             <i class="fab fa-facebook"></i>
                         </a>
                     <?php endif; ?>
-                    
-                    <?php if (!empty($instagram)) : ?>
-                        <a href="<?php echo esc_url($instagram); ?>" class="social-icon" target="_blank" rel="noopener noreferrer">
+
+                    <?php if (!empty($instagram)): ?>
+                        <a href="<?php echo esc_url($instagram); ?>" class="social-icon" target="_blank"
+                            rel="noopener noreferrer">
                             <i class="fab fa-instagram"></i>
                         </a>
                     <?php endif; ?>
-                    
-                    <?php if (!empty($youtube)) : ?>
-                        <a href="<?php echo esc_url($youtube); ?>" class="social-icon" target="_blank" rel="noopener noreferrer">
+
+                    <?php if (!empty($youtube)): ?>
+                        <a href="<?php echo esc_url($youtube); ?>" class="social-icon" target="_blank"
+                            rel="noopener noreferrer">
                             <i class="fab fa-youtube"></i>
                         </a>
                     <?php endif; ?>
@@ -98,66 +116,59 @@ $youtube = get_the_author_meta('youtube', $author_id);
             <?php endif; ?>
         </div>
     </div>
-    
+
     <div class="author-content">
         <ul class="nav nav-tabs author-tabs" id="authorTabs" role="tablist">
             <li class="nav-item" role="presentation">
-                <a class="nav-link <?php echo $active_tab === 'uploads' ? 'active' : ''; ?>" 
-                   id="uploads-tab" 
-                   href="<?php echo esc_url(add_query_arg('tab', 'uploads', remove_query_arg('paged'))); ?>" 
-                   role="tab" 
-                   aria-controls="uploads" 
-                   aria-selected="<?php echo $active_tab === 'uploads' ? 'true' : 'false'; ?>">
+                <a class="nav-link <?php echo $active_tab === 'uploads' ? 'active' : ''; ?>" id="uploads-tab"
+                    href="<?php echo esc_url(add_query_arg('tab', 'uploads', remove_query_arg('paged'))); ?>" role="tab"
+                    aria-controls="uploads" aria-selected="<?php echo $active_tab === 'uploads' ? 'true' : 'false'; ?>">
                     <i class="fas fa-upload"></i> Uploads
                 </a>
             </li>
             <li class="nav-item" role="presentation">
-                <a class="nav-link <?php echo $active_tab === 'purchased' ? 'active' : ''; ?>" 
-                   id="purchased-tab" 
-                   href="<?php echo esc_url(add_query_arg('tab', 'purchased', remove_query_arg('paged'))); ?>" 
-                   role="tab" 
-                   aria-controls="purchased" 
-                   aria-selected="<?php echo $active_tab === 'purchased' ? 'true' : 'false'; ?>">
+                <a class="nav-link <?php echo $active_tab === 'purchased' ? 'active' : ''; ?>" id="purchased-tab"
+                    href="<?php echo esc_url(add_query_arg('tab', 'purchased', remove_query_arg('paged'))); ?>"
+                    role="tab" aria-controls="purchased"
+                    aria-selected="<?php echo $active_tab === 'purchased' ? 'true' : 'false'; ?>">
                     <i class="fas fa-shopping-cart"></i> Purchased
                 </a>
             </li>
             <li class="nav-item" role="presentation">
-                <a class="nav-link <?php echo $active_tab === 'comments' ? 'active' : ''; ?>" 
-                   id="comments-tab" 
-                   href="<?php echo esc_url(add_query_arg('tab', 'comments', remove_query_arg('paged'))); ?>" 
-                   role="tab" 
-                   aria-controls="comments" 
-                   aria-selected="<?php echo $active_tab === 'comments' ? 'true' : 'false'; ?>">
+                <a class="nav-link <?php echo $active_tab === 'comments' ? 'active' : ''; ?>" id="comments-tab"
+                    href="<?php echo esc_url(add_query_arg('tab', 'comments', remove_query_arg('paged'))); ?>"
+                    role="tab" aria-controls="comments"
+                    aria-selected="<?php echo $active_tab === 'comments' ? 'true' : 'false'; ?>">
                     <i class="fas fa-comments"></i> Comments
                 </a>
             </li>
         </ul>
-        
+
         <div class="tab-content" id="authorTabContent">
-            <?php if ($active_tab === 'uploads') : ?>
+            <?php if ($active_tab === 'uploads'): ?>
                 <div class="tab-pane fade show active" id="uploads" role="tabpanel" aria-labelledby="uploads-tab">
                     <?php
                     // Query videos uploaded by author
                     $uploads_args = array(
                         'post_type' => 'yoyo_videos',
-                        'posts_per_page' => 5,
+                        'posts_per_page' => 12,
                         'author' => $author_id,
                         'paged' => $paged
                     );
-                    
+
                     $uploads_query = new WP_Query($uploads_args);
-                    
-                    if ($uploads_query->have_posts()) :
-                    ?>
+
+                    if ($uploads_query->have_posts()):
+                        ?>
                         <div class="video-grid author-videos-grid">
                             <?php
-                            while ($uploads_query->have_posts()) :
+                            while ($uploads_query->have_posts()):
                                 $uploads_query->the_post();
                                 get_template_part('template-parts/content', 'author-video');
                             endwhile;
                             ?>
                         </div>
-                        
+
                         <div class="author-pagination">
                             <?php
                             // Create custom pagination links that preserve the tab parameter
@@ -170,14 +181,14 @@ $youtube = get_the_author_meta('youtube', $author_id);
                                 'current' => $paged,
                                 'add_args' => array('tab' => $active_tab) // This preserves the tab parameter
                             );
-                            
+
                             echo paginate_links($pagination_args);
                             ?>
                         </div>
-                        
+
                         <?php wp_reset_postdata(); ?>
-                        
-                    <?php else : ?>
+
+                    <?php else: ?>
                         <div class="no-content-message">
                             <i class="fas fa-video-slash"></i>
                             <h3>No Videos Uploaded</h3>
@@ -186,14 +197,21 @@ $youtube = get_the_author_meta('youtube', $author_id);
                     <?php endif; ?>
                 </div>
             <?php endif; ?>
-            
-            <?php if ($active_tab === 'purchased') : ?>
+
+            <?php if ($active_tab === 'purchased'): ?>
                 <div class="tab-pane fade show active" id="purchased" role="tabpanel" aria-labelledby="purchased-tab">
                     <?php
-                    // Get purchased videos IDs from user meta
-                    $purchased_video_ids = get_user_meta($author_id, 'purchased_videos', true);
-                    
-                    if (!empty($purchased_video_ids) && is_array($purchased_video_ids)) {
+                    global $wpdb;
+
+                    // Fetch purchased video IDs from wp_video_payments table
+                    $purchased_video_ids = $wpdb->get_col(
+                        $wpdb->prepare(
+                            "SELECT video_id FROM wp_video_payments WHERE user_id = %d AND payment_status = 'succeeded'",
+                            $author_id
+                        )
+                    );
+
+                    if (!empty($purchased_video_ids)) {
                         // Query purchased videos
                         $purchased_args = array(
                             'post_type' => 'yoyo_videos',
@@ -201,20 +219,20 @@ $youtube = get_the_author_meta('youtube', $author_id);
                             'post__in' => $purchased_video_ids,
                             'paged' => $paged
                         );
-                        
+
                         $purchased_query = new WP_Query($purchased_args);
-                        
-                        if ($purchased_query->have_posts()) :
-                        ?>
+
+                        if ($purchased_query->have_posts()):
+                            ?>
                             <div class="video-grid author-videos-grid">
                                 <?php
-                                while ($purchased_query->have_posts()) :
+                                while ($purchased_query->have_posts()):
                                     $purchased_query->the_post();
                                     get_template_part('template-parts/content', 'author-video');
                                 endwhile;
                                 ?>
                             </div>
-                            
+
                             <div class="author-pagination">
                                 <?php
                                 // Create custom pagination links that preserve the tab parameter
@@ -227,14 +245,14 @@ $youtube = get_the_author_meta('youtube', $author_id);
                                     'current' => $paged,
                                     'add_args' => array('tab' => $active_tab) // This preserves the tab parameter
                                 );
-                                
+
                                 echo paginate_links($pagination_args);
                                 ?>
                             </div>
-                            
+
                             <?php wp_reset_postdata(); ?>
-                            
-                        <?php else : ?>
+
+                        <?php else: ?>
                             <div class="no-content-message">
                                 <i class="fas fa-shopping-cart"></i>
                                 <h3>No Purchased Videos</h3>
@@ -250,14 +268,15 @@ $youtube = get_the_author_meta('youtube', $author_id);
                     <?php } ?>
                 </div>
             <?php endif; ?>
-            
-            <?php if ($active_tab === 'comments') : ?>
+
+
+            <?php if ($active_tab === 'comments'): ?>
                 <div class="tab-pane fade show active" id="comments" role="tabpanel" aria-labelledby="comments-tab">
                     <?php
                     // Calculate offset for comment pagination
                     $comments_per_page = 20;
                     $offset = ($paged - 1) * $comments_per_page;
-                    
+
                     // Query comments by author
                     $comments_args = array(
                         'user_id' => $author_id,
@@ -265,49 +284,45 @@ $youtube = get_the_author_meta('youtube', $author_id);
                         'number' => $comments_per_page,
                         'offset' => $offset
                     );
-                    
-                    $comments_query = new WP_Comment_Query;
+
+                    $comments_query = new \WP_Comment_Query;
                     $comments = $comments_query->query($comments_args);
-                    
-                    if ($comments) :
-                    ?>
+
+                    if ($comments):
+                        ?>
                         <div class="author-comments-list">
-                            <?php foreach ($comments as $comment) : 
+                            <?php foreach ($comments as $comment):
                                 // Get post information
                                 $post_id = $comment->comment_post_ID;
                                 $post_type = get_post_type($post_id);
-                                
-                                // Get the video_id for this comment's post
-                                $video_id = $post_id;
 
-                                
+                                // Get video_id from comment meta (fallback to post meta)
+                                $video_id = get_comment_meta($comment->comment_ID, 'video_id', true);
+                                if (empty($video_id)) {
+                                    $video_id = get_post_meta($post_id, 'video_id', true);
+                                }
 
-                                var_dump($video_id);
+                                // Get comment permalink
+                                $comment_url = get_comment_link($comment);
 
-
-
-
-                                // Build the comment URL with video_id
-                                $comment_url = get_permalink($post_id);
+                                // Ensure video_id is in the URL
                                 if (!empty($video_id) && $post_type === 'yoyo_videos') {
-                                    // Force add video_id parameter
                                     $comment_url = add_query_arg('video_id', $video_id, $comment_url);
                                 }
-                                
-                                // Add the comment anchor
-                                $comment_url .= '#comment-' . $comment->comment_ID;
-                            ?>
+                                ?>
                                 <div class="author-comment-item">
                                     <div class="comment-meta">
                                         <a href="<?php echo esc_url($comment_url); ?>" class="comment-post-title">
                                             <?php echo esc_html(get_the_title($post_id)); ?>
-                                            <?php if (!empty($video_id)) : ?>
-                                                <span class="video-id-debug" style="display: none;">Video ID: <?php echo esc_html($video_id); ?></span>
+                                            <?php if (!empty($video_id)): ?>
+                                                <span class="video-id-debug" style="display: none;">Video ID:
+                                                    <?php echo esc_html($video_id); ?></span>
                                             <?php endif; ?>
                                         </a>
                                         <span class="comment-date">
                                             <i class="fas fa-calendar-alt"></i>
-                                            <?php echo esc_html(human_time_diff(strtotime($comment->comment_date), current_time('timestamp'))); ?> ago
+                                            <?php echo esc_html(human_time_diff(strtotime($comment->comment_date), current_time('timestamp'))); ?>
+                                            ago
                                         </span>
                                     </div>
                                     <div class="comment-content">
@@ -321,7 +336,7 @@ $youtube = get_the_author_meta('youtube', $author_id);
                                 </div>
                             <?php endforeach; ?>
                         </div>
-                        
+
                         <div class="author-pagination">
                             <?php
                             // Get total comments for pagination
@@ -330,9 +345,9 @@ $youtube = get_the_author_meta('youtube', $author_id);
                                 'status' => 'approve',
                                 'count' => true
                             ));
-                            
+
                             $total_pages = ceil($total_comments / $comments_per_page);
-                            
+
                             // Create custom pagination links that preserve the tab parameter
                             $pagination_args = array(
                                 'base' => add_query_arg('paged', '%#%'),
@@ -343,11 +358,11 @@ $youtube = get_the_author_meta('youtube', $author_id);
                                 'current' => $paged,
                                 'add_args' => array('tab' => $active_tab) // This preserves the tab parameter
                             );
-                            
+
                             echo paginate_links($pagination_args);
                             ?>
                         </div>
-                    <?php else : ?>
+                    <?php else: ?>
                         <div class="no-content-message">
                             <i class="fas fa-comments-slash"></i>
                             <h3>No Comments</h3>
@@ -361,4 +376,3 @@ $youtube = get_the_author_meta('youtube', $author_id);
 </div>
 
 <?php get_footer(); ?>
-

@@ -1,6 +1,6 @@
-@use '../0-abstracts/abstracts' as *;
-@use '../2-components/components' as *;
-@use 'sass:color';
+@use "../0-abstracts/abstracts" as *;
+@use "../2-components/components" as *;
+@use "sass:color";
 
 // Enhanced video player styles with new color scheme
 .video-player-container {
@@ -212,14 +212,17 @@
 // Fix the seek bar progress visibility
 .seek-bar-progress {
   position: absolute;
-  top: 0;
-  left: 0;
+  bottom: 25%;
+  left: 0.75rem;
   height: 8px;
   background: linear-gradient(to right, $primary-purple, $accent-pink);
   border-radius: 4px;
   pointer-events: none;
   z-index: 1;
   opacity: 1; // Ensure it's visible
+  z-index: -1;
+  max-width: 90%;
+
 }
 
 .volume-bar {
@@ -254,21 +257,22 @@
 
 // Add a volume progress indicator
 .volume-bar-progress {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 5px;
   background: $accent-teal;
   border-radius: 5px;
+  bottom: 34%;
+  height: 5px;
+  left: 0.55rem;
   pointer-events: none;
+  position: absolute;
   z-index: 1;
+  max-width: 85% !important;
 }
 
 .time {
   color: $text-light;
   font-size: 0.85rem;
   margin: 0 0.75rem;
-  min-width: 3.5rem;
+  // min-width: 3.5rem;
   text-align: center;
   font-family: monospace;
   background-color: rgba(0, 0, 0, 0.3);
@@ -280,7 +284,7 @@
 .volume-container {
   display: flex;
   align-items: center;
-  margin-left: 0.5rem;
+  // margin-left: 0.5rem;
   flex-shrink: 0; // Prevent shrinking
 }
 
