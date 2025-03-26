@@ -75,8 +75,8 @@ get_header();
                                 <div class="mb-3">
                                     <label for="signup-role" class="form-label">Role</label>
                                     <select class="form-select" id="signup-role" required>
-                                        <option value="subscriber">Author</option>
-                                        <option value="administrator">Subscriber</option>
+                                        <option value="author">Author</option>
+                                        <option value="subscriber">Subscriber</option>
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-primary w-100">Sign Up</button>

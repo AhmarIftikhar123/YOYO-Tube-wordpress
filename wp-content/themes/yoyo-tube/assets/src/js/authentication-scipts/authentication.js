@@ -1,4 +1,23 @@
 jQuery(document).ready(function ($) {
+  function showToast(title, message, type = "info") {
+    var toast = $("#yoyo-toast");
+
+    // Update toast content
+    toast.find(".toast-title").text(title);
+    toast.find(".toast-body").text(message);
+
+    // Add bootstrap class for different types of messages
+    var iconClass = "fas fa-info-circle";
+    if (type === "success") iconClass = "fas fa-check-circle text-success";
+    if (type === "error") iconClass = "fas fa-exclamation-triangle text-danger";
+
+    toast.find(".toast-icon i").attr("class", iconClass);
+
+    // Show toast
+    var toastInstance = new bootstrap.Toast(toast[0]);
+    toastInstance.show();
+  }
+
   $("#login-form").on("submit", function (e) {
     e.preventDefault();
 
@@ -18,15 +37,16 @@ jQuery(document).ready(function ($) {
       },
       success: function (response) {
         if (response.success) {
-          alert("Login successful!");
-          window.location.href = yoyo_auth_ajax.home_url;
+          showToast("Success", "Login successful!", "success");
+          setTimeout(() => {
+            window.location.href = yoyo_auth_ajax.home_url;
+          }, 2000);
         } else {
-          alert("Login failed: " + response.data.message);
+          showToast("Error", "Login failed: " + response.data.message, "error");
         }
       },
-      error: function (xhr, response, resonseTxt) {
-        console.log(xhr, response, resonseTxt);
-        alert("An error occurred. Please try again.");
+      error: function () {
+        showToast("Error", "An error occurred. Please try again.", "error");
       },
     });
   });
@@ -41,7 +61,7 @@ jQuery(document).ready(function ($) {
     var role = $("#signup-role").val();
 
     if (password !== confirmPassword) {
-      alert("Passwords do not match.");
+      showToast("Error", "Passwords do not match.", "error");
       return;
     }
 
@@ -58,14 +78,24 @@ jQuery(document).ready(function ($) {
       },
       success: function (response) {
         if (response.success) {
-          alert("Sign up successful! Please log in.");
-          $("#login-tab").tab("show");
+          showToast(
+            "Success",
+            "Now Login! Signup successful! Your role: " + response.data.role,
+            "success"
+          );
+          setTimeout(() => {
+            window.location.href = yoyo_auth_ajax.home_url;
+          }, 2000);
         } else {
-          alert("Sign up failed: " + response.data.message);
+          showToast(
+            "Error",
+            "Signup failed: " + response.data.message,
+            "error"
+          );
         }
       },
       error: function () {
-        alert("An error occurred. Please try again.");
+        showToast("Error", "An error occurred. Please try again.", "error");
       },
     });
   });

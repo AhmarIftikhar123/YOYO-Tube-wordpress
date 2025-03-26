@@ -21,8 +21,8 @@ class authentication
 
           private function setup_hooks()
           {
-                    add_action('wp_ajax_nopriv_yoyo_login', [$this,'yoyo_login']);
-                    add_action('wp_ajax_nopriv_yoyo_signup', [$this , 'yoyo_signup']);
+                    add_action('wp_ajax_nopriv_yoyo_login', [$this, 'yoyo_login']);
+                    add_action('wp_ajax_nopriv_yoyo_signup', [$this, 'yoyo_signup']);
           }
           public function yoyo_login()
           {
@@ -60,7 +60,8 @@ class authentication
                     } else {
                               $user = new \WP_User($user_id);
                               $user->set_role($role);
-                              wp_send_json_success();
+                              // Send success with role info
+                              wp_send_json_success(['role' => $role]);
                     }
           }
 }
